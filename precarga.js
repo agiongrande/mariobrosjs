@@ -1,19 +1,28 @@
 let etapaJuego = 0 // 0 cargando - 1 inicio - 2 jugando - 3 gameover
 
-let imgEnemigos = new Image();
-imgEnemigos.src = 'graficos/4307.png';
+var preloadPictures = function(pictureUrls, callback) {
+  var i,
+      j,
+      loaded = 0;
 
-let imgVarios = new Image();
-imgVarios.src = 'graficos/4320.png';
+  for (i = 0, j = pictureUrls.length; i < j; i++) {
+      (function (img, src) {
+          img.onload = function () {                               
+              if (++loaded == pictureUrls.length && callback) {
+                  callback();
+              }
+          };
 
-let imgPremios = new Image();
-imgPremios.src = 'graficos/31609.png';
+          // Use the following callback methods to debug
+          // in case of an unexpected behavior.
+          img.onerror = function () {};
+          img.onabort = function () {};
 
-let imgFondo = new Image();
-imgFondo.src = 'graficos/65292.png';
+          img.src = src;
+      } (new Image(), pictureUrls[i]));
+  }
+};
 
-let imgMundo = new Image();
-imgMundo.src = 'graficos/105636.png';
-
-let imgMario = new Image();
-imgMario.src = 'graficos/mariob.png';
+preloadPictures(['graficos/4307.png','graficos/105636.png','graficos/mariob.png', 'graficos/4320.png', 'graficos/31609.png', 'graficos/65292.png'], function(){
+  etapaJuego=1;
+});

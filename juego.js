@@ -29,7 +29,7 @@ let escenario = [];
 escenario = {}
 
 
-empezarJuego();
+//empezarJuego();
 
 function empezarJuego(){
     vidas = 3;
@@ -63,12 +63,44 @@ let keyboard = {};
 
 function render(){
     if (etapaJuego ==0){
-        c.font = "bold 24px verdana, sans-serif ";
-        var welcomeMessage ="Cargando";
-        c.textAlign = "start";
+        c.drawImage(imgFondo,0,0)
+        
+        var pat = c.createPattern(imgFondo, "repeat");
+        c.rect(0, 0, 1500, 1500);
+        c.fillStyle = pat;
+        c.fill();
+                c.font = "bold 24px verdana, sans-serif ";
+        let welcomeMessage2 ="Cargando";
+        c.textAlign = "center";
         c.textBaseline = "bottom";
         c.fillStyle = "#ff0000";
-        c.fillText(welcomeMessage, 10, 80);
+        c.fillText(welcomeMessage2, canvas.width/2, canvas.height/2);
+    } else if (etapaJuego ==1){
+        c.drawImage(imgFondo,0,0)
+        
+        var pat = c.createPattern(imgFondo, "repeat");
+        c.rect(0, 0, 1500, 1500);
+        c.fillStyle = pat;
+        c.fill();
+                c.font = "bold 24px verdana, sans-serif ";
+        let welcomeMessage2 ="PRESIONA ENTER PARA COMENZAR";
+        c.textAlign = "center";
+        c.textBaseline = "bottom";
+        c.fillStyle = "#ff0000";
+        c.fillText(welcomeMessage2, canvas.width/2, canvas.height/2);
+    } else if (etapaJuego ==3){
+        c.drawImage(imgFondo,0,0)
+        
+        var pat = c.createPattern(imgFondo, "repeat");
+        c.rect(0, 0, 1500, 1500);
+        c.fillStyle = pat;
+        c.fill();
+                c.font = "bold 24px verdana, sans-serif ";
+        let welcomeMessage2 ="PERDISTE! APRETA ENTER PARA REINTENTAR";
+        c.textAlign = "center";
+        c.textBaseline = "bottom";
+        c.fillStyle = "#ff0000";
+        c.fillText(welcomeMessage2, canvas.width/2, canvas.height/2);
     } else if (etapaJuego ==2){
 
         c.drawImage(imgFondo,0,0)
@@ -132,39 +164,39 @@ function render(){
             }
 
         }
-    }
 
+        if (personaje.moviendo==true){
+            if (personaje.direccion ==1){
+                c.drawImage(personaje.img,personaje.imgX[personaje.frameActual],personaje.imgY[personaje.frameActual],personaje.imgAncho[personaje.frameActual],personaje.imgAlto[personaje.frameActual],personaje.X,personaje.Y,personaje.imgAncho[personaje.frameActual],personaje.imgAlto[personaje.frameActual])
+            }else {
+                c.save()
+                c.translate(1280,0)
+                c.scale(-1,1)
+                c.drawImage(personaje.img,personaje.imgX[personaje.frameActual],personaje.imgY[personaje.frameActual],personaje.imgAncho[personaje.frameActual],personaje.imgAlto[personaje.frameActual],canvas.width-personaje.X-personaje.imgAncho[personaje.frameActual],personaje.Y,personaje.imgAncho[personaje.frameActual],personaje.imgAlto[personaje.frameActual])
+                c.restore();
+            }
+        } else {
+            if (personaje.direccion ==1){
+                c.drawImage(personaje.img,personaje.imgX[0],personaje.imgY[0],personaje.imgAncho[0],personaje.imgAlto[0],personaje.X,personaje.Y,personaje.imgAncho[0],personaje.imgAlto[0])
+            }else {
+                c.save()
+                c.translate(1280,0)
+                c.scale(-1,1)
+                c.drawImage(personaje.img,personaje.imgX[0],personaje.imgY[0],personaje.imgAncho[0],personaje.imgAlto[0],canvas.width-personaje.X-personaje.imgAncho[0],personaje.Y,personaje.imgAncho[0],personaje.imgAlto[0])
+                c.restore()
+            }
+        }
+        if (personaje.timerInmortal>0){
+            c.globalAlpha = 0.7;
+            c.fillStyle = 'yellow';
+        } else{
+            c.globalAlpha = 1;
+            c.fillStyle = '';
+        }
+        personaje.frameActual ++;
+        if(personaje.frameActual>=personaje.frames) personaje.frameActual=0
 
-    if (personaje.moviendo==true){
-        if (personaje.direccion ==1){
-            c.drawImage(personaje.img,personaje.imgX[personaje.frameActual],personaje.imgY[personaje.frameActual],personaje.imgAncho[personaje.frameActual],personaje.imgAlto[personaje.frameActual],personaje.X,personaje.Y,personaje.imgAncho[personaje.frameActual],personaje.imgAlto[personaje.frameActual])
-        }else {
-            c.save()
-            c.translate(1280,0)
-            c.scale(-1,1)
-            c.drawImage(personaje.img,personaje.imgX[personaje.frameActual],personaje.imgY[personaje.frameActual],personaje.imgAncho[personaje.frameActual],personaje.imgAlto[personaje.frameActual],canvas.width-personaje.X-personaje.imgAncho[personaje.frameActual],personaje.Y,personaje.imgAncho[personaje.frameActual],personaje.imgAlto[personaje.frameActual])
-            c.restore();
-        }
-    } else {
-        if (personaje.direccion ==1){
-            c.drawImage(personaje.img,personaje.imgX[0],personaje.imgY[0],personaje.imgAncho[0],personaje.imgAlto[0],personaje.X,personaje.Y,personaje.imgAncho[0],personaje.imgAlto[0])
-        }else {
-            c.save()
-            c.translate(1280,0)
-            c.scale(-1,1)
-            c.drawImage(personaje.img,personaje.imgX[0],personaje.imgY[0],personaje.imgAncho[0],personaje.imgAlto[0],canvas.width-personaje.X-personaje.imgAncho[0],personaje.Y,personaje.imgAncho[0],personaje.imgAlto[0])
-            c.restore()
-        }
     }
-    if (personaje.timerInmortal>0){
-        c.globalAlpha = 0.7;
-        c.fillStyle = 'yellow';
-    } else{
-        c.globalAlpha = 1;
-        c.fillStyle = '';
-    }
-    personaje.frameActual ++;
-    if(personaje.frameActual>=personaje.frames) personaje.frameActual=0
 }
 
 function perder(){
@@ -284,7 +316,11 @@ Timer();
 
 function Timer(){
     render();
-    if (etapaJuego == 2){
+    if (etapaJuego == 1 || etapaJuego ==3){
+        if (keyboard[13] == true){
+            empezarJuego();
+        }
+    }else if (etapaJuego == 2){
         if (timerMuerto ==0){
 
             moverPersonaje();
@@ -319,7 +355,7 @@ function Timer(){
             timerMuerto--;
             if (timerMuerto == 0){
                 if (vidas<=0){
-                    empezarJuego()
+                    etapaJuego=3;
                 } else{
                     empezarNivel(numeroNivel)
                 }
@@ -327,7 +363,7 @@ function Timer(){
     
         }
     }
-        setTimeout("Timer();",intervaloMover);
+    setTimeout("Timer();",intervaloMover);
 }
 
 function aleatorio(min, max) {
@@ -438,8 +474,6 @@ function chocarPremios(){
     }
 }
 
-
-
 addEvent(document,"keydown", function(e){
     keyboard[e.keyCode] = true;
 })
@@ -450,3 +484,4 @@ addEvent(document,"keyup", function(e){
 function addEvent(elemento, evento, funcion){
     elemento.addEventListener(evento, funcion, false)
 }
+

@@ -1,3 +1,21 @@
+let imgEnemigos = new Image();
+imgEnemigos.src = 'graficos/4307.png';
+
+let imgVarios = new Image();
+imgVarios.src = 'graficos/4320.png';
+
+let imgPremios = new Image();
+imgPremios.src = 'graficos/31609.png';
+
+let imgFondo = new Image();
+imgFondo.src = 'graficos/65292.png';
+
+let imgMundo = new Image();
+imgMundo.src = 'graficos/105636.png';
+
+let imgMario = new Image();
+imgMario.src = 'graficos/mariob.png';
+
 let imgVidas = {"imagen": imgVarios, "x": 2, "y": 58, "ancho": 32, "alto":32, "margenX":35,"margenY": 10}
 let imgMonedas = {"imagen": imgMundo, "x": 653, "y": 167, "ancho": 26, "alto":26, "margenX":1243,"margenY": 8}
 
