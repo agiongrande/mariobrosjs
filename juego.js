@@ -76,14 +76,14 @@ function render(){
     c.fill();
 
     let imgVidas = new Image();
-    imgVidas.src = "graficos/4320.PNG"
+    imgVidas.src = "graficos/4320.png"
 
     for (let index = 0; index < vidas; index++) {
         c.drawImage(imgVidas,2,58,32,32,32*index+10,10,32,32)
     }
 
     let imgMonedas = new Image();
-    imgMonedas.src = "graficos/105636b.PNG"    
+    imgMonedas.src = "graficos/105636b.png"    
 
     c.drawImage(imgMonedas,653,167,26,26,canvas.width-26-10,10,26,26)
 
