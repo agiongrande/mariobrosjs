@@ -1,4 +1,5 @@
 let gravedad = 5;
+let timerMuerto = 0;
 let numEnemigo = 0
 let numDisparo = 0
 let numPremio = 0
@@ -14,7 +15,6 @@ let vidas
 let numeroNivel
 let tileX = 30
 let tileY=30
-let jugando = false
 let enemigosDinamicos = [];
 let dinamicosX= 0
 let canvas = document.querySelector('canvas')
@@ -23,9 +23,6 @@ let c = canvas.getContext("2d")
 canvas.width = 1280;
 canvas.height = 570;
 
-let fondo = new Image();
-fondo.src = "graficos/65292.png"
-
 let intervaloMover=1000/20
 
 let escenario = [];
@@ -33,8 +30,6 @@ escenario = {}
 
 
 empezarJuego();
-
-
 
 function empezarJuego(){
     vidas = 3;
@@ -59,7 +54,7 @@ function empezarJuego(){
 function empezarNivel(){
     resetNivel();
     cargarNivel(numeroNivel)
-    jugando = true;
+    etapaJuego = 2;
 }
 
 let keyboard = {};
@@ -67,85 +62,77 @@ let keyboard = {};
 
 
 function render(){
+    if (etapaJuego ==0){
+        c.font = "bold 24px verdana, sans-serif ";
+        var welcomeMessage ="Cargando";
+        c.textAlign = "start";
+        c.textBaseline = "bottom";
+        c.fillStyle = "#ff0000";
+        c.fillText(welcomeMessage, 10, 80);
+    } else if (etapaJuego ==2){
 
-    c.drawImage(fondo,0,0)
+        c.drawImage(imgFondo,0,0)
 
-    var pat = c.createPattern(fondo, "repeat");
-    c.rect(0, 0, 1500, 1500);
-    c.fillStyle = pat;
-    c.fill();
+        var pat = c.createPattern(imgFondo, "repeat");
+        c.rect(0, 0, 1500, 1500);
+        c.fillStyle = pat;
+        c.fill();
 
-    let imgVidas = new Image();
-    imgVidas.src = "graficos/4320.png"
+        for (let index = 0; index < vidas; index++) {
+            c.drawImage(imgVidas.imagen,imgVidas.x,imgVidas.y,imgVidas.ancho,imgVidas.alto,imgVidas.margenX*index+10,imgVidas.margenY,imgVidas.ancho,imgVidas.alto)
+        }
 
-    for (let index = 0; index < vidas; index++) {
-        c.drawImage(imgVidas,2,58,32,32,32*index+10,10,32,32)
-    }
+        c.drawImage(imgMonedas.imagen,imgMonedas.x,imgMonedas.y,imgMonedas.ancho,imgMonedas.alto,imgMonedas.margenX,imgMonedas.margenY,imgMonedas.ancho,imgMonedas.alto)
 
-    let imgMonedas = new Image();
-    imgMonedas.src = "graficos/105636b.png"    
+        c.font = "bold 24px verdana, sans-serif ";
+        var welcomeMessage =cantMonedas;
+        c.textAlign = "right";
+        c.textBaseline = "bottom";
+        c.fillStyle = "#ff0000";
+        c.fillText(welcomeMessage, canvas.width-26-20, 36);
 
-    c.drawImage(imgMonedas,653,167,26,26,canvas.width-26-10,10,26,26)
+        c.font = "bold 24px verdana, sans-serif ";
+        var welcomeMessage ="Nivel " + numeroNivel;
+        c.textAlign = "start";
+        c.textBaseline = "bottom";
+        c.fillStyle = "#ff0000";
+        c.fillText(welcomeMessage, 10, 80);
 
-    c.font = "bold 24px verdana, sans-serif ";
-    var welcomeMessage =cantMonedas;
-    c.textAlign = "right";
-    c.textBaseline = "bottom";
-    c.fillStyle = "#ff0000";
-    c.fillText(welcomeMessage, canvas.width-26-20, 36);
+        for (const prem of premios){
+            c.drawImage(prem.img,prem.imgX[prem.frameActual],prem.imgY[prem.frameActual],prem.imgAncho[prem.frameActual],prem.imgAlto[prem.frameActual],prem.X,prem.Y,prem.imgAncho[prem.frameActual],prem.imgAlto[prem.frameActual])
+            prem.frameActual = prem.frameActual+1;
+            if(prem.frameActual>=prem.frames) prem.frameActual=0
+        }
 
-    c.font = "bold 24px verdana, sans-serif ";
-    var welcomeMessage ="Nivel " + numeroNivel;
-    c.textAlign = "start";
-    c.textBaseline = "bottom";
-    c.fillStyle = "#ff0000";
-    c.fillText(welcomeMessage, 10, 80);
+        for (const plat of plataformas){
+            c.drawImage(plat.img,plat.imgX[plat.frameActual],plat.imgY[plat.frameActual],plat.imgAncho[plat.frameActual],plat.imgAlto[plat.frameActual],plat.X,plat.Y,plat.imgAncho[plat.frameActual],plat.imgAlto[plat.frameActual])
+            plat.frameActual = plat.frameActual+1;
+            if(plat.frameActual>=plat.frames) plat.frameActual=0
+        }
 
-    for (const prem of premios){
-        c.drawImage(prem.img,prem.imgX[prem.frameActual],prem.imgY[prem.frameActual],prem.imgAncho[prem.frameActual],prem.imgAlto[prem.frameActual],prem.X,prem.Y,prem.imgAncho[prem.frameActual],prem.imgAlto[prem.frameActual])
-        prem.frameActual = prem.frameActual+1;
-        if(prem.frameActual>=prem.frames){
-            prem.frameActual=0
+        for (const disp of disparos){
+            c.drawImage(disp.img,disp.imgX[disp.frameActual],disp.imgY[disp.frameActual],disp.imgAncho[disp.frameActual],disp.imgAlto[disp.frameActual],disp.X,disp.Y,disp.imgAncho[disp.frameActual],disp.imgAlto[disp.frameActual])
+            disp.frameActual = disp.frameActual+1;
+            if(disp.frameActual>=disp.frames) disp.frameActual=0
+        }
+
+        for (const enemigo of enemigos){
+            if (enemigo.direccion ==-1){
+                c.drawImage(enemigo.img,enemigo.imgX[enemigo.frameActual],enemigo.imgY[enemigo.frameActual],enemigo.imgAncho[enemigo.frameActual],enemigo.imgAlto[enemigo.frameActual],enemigo.X,enemigo.Y,enemigo.imgAncho[enemigo.frameActual],enemigo.imgAlto[enemigo.frameActual])
+            } else {
+                c.save()
+                c.translate(1280,0)
+                c.scale(-1,1)
+                c.drawImage(enemigo.img,enemigo.imgX[enemigo.frameActual],enemigo.imgY[enemigo.frameActual],enemigo.imgAncho[enemigo.frameActual],enemigo.imgAlto[enemigo.frameActual],canvas.width-enemigo.X-enemigo.imgAncho[enemigo.frameActual],enemigo.Y,enemigo.imgAncho[enemigo.frameActual],enemigo.imgAlto[enemigo.frameActual])
+                c.restore();
+            }
+            if (enemigo.velocidadX != 0){
+                enemigo.frameActual = enemigo.frameActual+1;
+                if(enemigo.frameActual>=enemigo.frames) enemigo.frameActual=0
+            }
+
         }
     }
-    
-    
-
-    for (const plat of plataformas){
-        c.drawImage(plat.img,plat.imgX[plat.frameActual],plat.imgY[plat.frameActual],plat.imgAncho[plat.frameActual],plat.imgAlto[plat.frameActual],plat.X,plat.Y,plat.imgAncho[plat.frameActual],plat.imgAlto[plat.frameActual])
-        plat.frameActual = plat.frameActual+1;
-        if(plat.frameActual>=plat.frames){
-            plat.frameActual=0
-        }
-    }
-
-    for (const disp of disparos){
-        c.drawImage(disp.img,disp.imgX[disp.frameActual],disp.imgY[disp.frameActual],disp.imgAncho[disp.frameActual],disp.imgAlto[disp.frameActual],disp.X,disp.Y,disp.imgAncho[disp.frameActual],disp.imgAlto[disp.frameActual])
-        disp.frameActual = disp.frameActual+1;
-        if(disp.frameActual>=disp.frames){
-            disp.frameActual=0
-        }
-    }
-
-
-    for (const enemigo of enemigos){
-        if (enemigo.direccion ==-1){
-        c.drawImage(enemigo.img,enemigo.imgX[enemigo.frameActual],enemigo.imgY[enemigo.frameActual],enemigo.imgAncho[enemigo.frameActual],enemigo.imgAlto[enemigo.frameActual],enemigo.X,enemigo.Y,enemigo.imgAncho[enemigo.frameActual],enemigo.imgAlto[enemigo.frameActual])
-    } else {
-        c.save()
-        c.translate(1280,0)
-        c.scale(-1,1)
-        c.drawImage(enemigo.img,enemigo.imgX[enemigo.frameActual],enemigo.imgY[enemigo.frameActual],enemigo.imgAncho[enemigo.frameActual],enemigo.imgAlto[enemigo.frameActual],canvas.width-enemigo.X-enemigo.imgAncho[enemigo.frameActual],enemigo.Y,enemigo.imgAncho[enemigo.frameActual],enemigo.imgAlto[enemigo.frameActual])
-        c.restore();
-    }
-    if (enemigo.velocidadX != 0){
-    enemigo.frameActual = enemigo.frameActual+1;
-        if(enemigo.frameActual>=enemigo.frames){
-            enemigo.frameActual=0
-        }
-    }
-}
-
 
 
     if (personaje.moviendo==true){
@@ -172,16 +159,12 @@ function render(){
     if (personaje.timerInmortal>0){
         c.globalAlpha = 0.7;
         c.fillStyle = 'yellow';
-        //c.fillRect(personaje.X, personaje.Y, 32, 32);
-        //c.drawImage(personaje.img,personaje.imgX[0],personaje.imgY[0],personaje.imgAncho[0],personaje.imgAlto[0],personaje.X,personaje.Y,personaje.imgAncho[0],personaje.imgAlto[0])    
     } else{
         c.globalAlpha = 1;
         c.fillStyle = '';
     }
     personaje.frameActual ++;
-    if(personaje.frameActual>=personaje.frames){
-        personaje.frameActual=0
-    }
+    if(personaje.frameActual>=personaje.frames) personaje.frameActual=0
 }
 
 function perder(){
@@ -190,12 +173,9 @@ function perder(){
         personaje.agachado=0;
         indexacion(personaje,17)
     }else{
+        indexacion(personaje,64)
         vidas--;
-        if (vidas<=0){
-            empezarJuego()
-        } else{
-            empezarNivel(numeroNivel)
-        }
+        timerMuerto=50;
     }
 }
 
@@ -304,38 +284,50 @@ Timer();
 
 function Timer(){
     render();
-    if (jugando==true){
+    if (etapaJuego == 2){
+        if (timerMuerto ==0){
 
-        moverPersonaje();
-        moverEnemigos();
-        moverPremios();
-        moverDisparos();
-        moverPlataformas();
-        chocarPremios();
-        if (personaje.timerRebote >0) personaje.timerRebote--
-        if (personaje.timerInmortal>0) personaje.timerInmortal--
-        if (personaje.timerDisparo>0) personaje.timerDisparo--
+            moverPersonaje();
+            moverEnemigos();
+            moverPremios();
+            moverDisparos();
+            moverPlataformas();
+            chocarPremios();
+            if (personaje.timerRebote >0) personaje.timerRebote--
+            if (personaje.timerInmortal>0) personaje.timerInmortal--
+            if (personaje.timerDisparo>0) personaje.timerDisparo--
 
-        timerCriaturas++
-        for (a of enemigosDinamicos){
-            if ((timerCriaturas % a.tiempo)==0){
-                enemigos.push(new Enemigo(30*a.X-dinamicosX,30*a.Y,a.grafico,a.direccion,a.velocidad,a.timerDisparo,a.antiGravedad));
-            }
-        }
-
-        personaje.gravedad();
-        for (const enemigo of enemigos) {
-            enemigo.gravedad();
-            if (enemigo.timerDisparo>0) {
-                enemigo.timerDisparo--
-                if (enemigo.timerDisparo==0){
-                    enemigo.disparar()
-                    enemigo.timerDisparo =50
+            timerCriaturas++
+            for (a of enemigosDinamicos){
+                if ((timerCriaturas % a.tiempo)==0){
+                    enemigos.push(new Enemigo(30*a.X-dinamicosX,30*a.Y,a.grafico,a.direccion,a.velocidad,a.timerDisparo,a.antiGravedad));
                 }
             }
+
+            personaje.gravedad();
+            for (const enemigo of enemigos) {
+                enemigo.gravedad();
+                if (enemigo.timerDisparo>0) {
+                    enemigo.timerDisparo--
+                    if (enemigo.timerDisparo==0){
+                        enemigo.disparar()
+                        enemigo.timerDisparo =50
+                    }
+                }
+            }
+        } else {
+            timerMuerto--;
+            if (timerMuerto == 0){
+                if (vidas<=0){
+                    empezarJuego()
+                } else{
+                    empezarNivel(numeroNivel)
+                }
+            }
+    
         }
-        setTimeout("Timer();",intervaloMover);
     }
+        setTimeout("Timer();",intervaloMover);
 }
 
 function aleatorio(min, max) {
@@ -347,8 +339,8 @@ function chocarEnemigo(a){
         if (b.Y + b.alto >= a.Y && b.Y < a.alto + a.Y) {
             if (b.X < a.X + a.ancho -a.offsetX  && b.X + b.ancho > a.X +a.offsetX  ) {
                 if (((a.velocidadY <= 0 && a.timerRebote ==0) && a.Y + a.alto > b.Y + (b.alto /2)) && a.timerInmortal == 0){
-                    b.eliminar();
                     perder();
+                    if (timerMuerto == 0)  b.eliminar();
                 } else {
                     b.eliminar()
                     if (a instanceof Disparo == true){
@@ -368,8 +360,8 @@ function chocarPersonaje(b){
         if (b.Y + b.alto >= a.Y && b.Y < a.alto + a.Y) {
             if (b.X < a.X + a.ancho -a.offsetX  && b.X + b.ancho > a.X +a.offsetX  ) {
                 if (a.timerInmortal == 0){
-                    b.eliminar();
                     perder();
+                    if (timerMuerto == 0)  b.eliminar();
                 } else {
                     b.eliminar()
                 }
