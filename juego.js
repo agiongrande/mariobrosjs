@@ -63,11 +63,8 @@ let keyboard = {};
 
 function render(){
     if (etapaJuego ==0){
-        c.drawImage(imgFondo,0,0)
-        var pat = c.createPattern(imgFondo, "repeat");
-        c.rect(0, 0, 1500, 1500);
-        c.fillStyle = pat;
-        c.fill();
+        contexto.fillStyle = "white";
+        contexto.fillRect(0, 0, canvas.width, canvas.height);
         c.font = "bold 24px verdana, sans-serif ";
         let welcomeMessage2 ="Cargando";
         c.textAlign = "center";
@@ -76,11 +73,8 @@ function render(){
         c.fillText(welcomeMessage2, canvas.width/2, canvas.height/2);
         c.fillStyle = "#ffffff";
     } else if (etapaJuego ==1){
-        c.drawImage(imgFondo,0,0)
-        var pat = c.createPattern(imgFondo, "repeat");
-        c.rect(0, 0, 1500, 1500);
-        c.fillStyle = pat;
-        c.fill();
+        contexto.fillStyle = "white";
+        contexto.fillRect(0, 0, canvas.width, canvas.height);
         c.font = "bold 24px verdana, sans-serif ";
         let welcomeMessage2 ="PRESIONA ENTER PARA COMENZAR";
         c.textAlign = "center";
