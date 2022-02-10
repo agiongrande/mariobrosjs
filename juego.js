@@ -63,8 +63,8 @@ let keyboard = {};
 
 function render(){
     if (etapaJuego ==0){
-        contexto.fillStyle = "white";
-        contexto.fillRect(0, 0, canvas.width, canvas.height);
+        c.fillStyle = "white";
+        c.fillRect(0, 0, canvas.width, canvas.height);
         c.font = "bold 24px verdana, sans-serif ";
         let welcomeMessage2 ="Cargando";
         c.textAlign = "center";
@@ -73,8 +73,8 @@ function render(){
         c.fillText(welcomeMessage2, canvas.width/2, canvas.height/2);
         c.fillStyle = "#ffffff";
     } else if (etapaJuego ==1){
-        contexto.fillStyle = "white";
-        contexto.fillRect(0, 0, canvas.width, canvas.height);
+        c.fillStyle = "white";
+        c.fillRect(0, 0, canvas.width, canvas.height);
         c.font = "bold 24px verdana, sans-serif ";
         let welcomeMessage2 ="PRESIONA ENTER PARA COMENZAR";
         c.textAlign = "center";
