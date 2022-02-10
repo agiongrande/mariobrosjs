@@ -64,25 +64,24 @@ let keyboard = {};
 function render(){
     if (etapaJuego ==0){
         c.drawImage(imgFondo,0,0)
-        
         var pat = c.createPattern(imgFondo, "repeat");
         c.rect(0, 0, 1500, 1500);
         c.fillStyle = pat;
         c.fill();
-                c.font = "bold 24px verdana, sans-serif ";
+        c.font = "bold 24px verdana, sans-serif ";
         let welcomeMessage2 ="Cargando";
         c.textAlign = "center";
         c.textBaseline = "bottom";
         c.fillStyle = "#ff0000";
         c.fillText(welcomeMessage2, canvas.width/2, canvas.height/2);
+        c.fillStyle = "#ffffff";
     } else if (etapaJuego ==1){
         c.drawImage(imgFondo,0,0)
-        
         var pat = c.createPattern(imgFondo, "repeat");
         c.rect(0, 0, 1500, 1500);
         c.fillStyle = pat;
         c.fill();
-                c.font = "bold 24px verdana, sans-serif ";
+        c.font = "bold 24px verdana, sans-serif ";
         let welcomeMessage2 ="PRESIONA ENTER PARA COMENZAR";
         c.textAlign = "center";
         c.textBaseline = "bottom";
@@ -90,21 +89,18 @@ function render(){
         c.fillText(welcomeMessage2, canvas.width/2, canvas.height/2);
     } else if (etapaJuego ==3){
         c.drawImage(imgFondo,0,0)
-        
         var pat = c.createPattern(imgFondo, "repeat");
         c.rect(0, 0, 1500, 1500);
         c.fillStyle = pat;
         c.fill();
-                c.font = "bold 24px verdana, sans-serif ";
+        c.font = "bold 24px verdana, sans-serif ";
         let welcomeMessage2 ="PERDISTE! APRETA ENTER PARA REINTENTAR";
         c.textAlign = "center";
         c.textBaseline = "bottom";
         c.fillStyle = "#ff0000";
         c.fillText(welcomeMessage2, canvas.width/2, canvas.height/2);
     } else if (etapaJuego ==2){
-
         c.drawImage(imgFondo,0,0)
-
         var pat = c.createPattern(imgFondo, "repeat");
         c.rect(0, 0, 1500, 1500);
         c.fillStyle = pat;
