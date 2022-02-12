@@ -59,7 +59,8 @@ function empezarNivel(){
 }
 
 let keyboard = {};
-
+let mouse = 0;
+let mouseNuevo = 0;
 
 
 function render(){
@@ -266,11 +267,11 @@ function moverPersonaje(){
     if (keyboard[40] == true){
         personaje.agachar();
     }
-    if (keyboard[37] == true && personaje.agachado ==false ){
+    if (keyboard[37] == true && personaje.agachado ==false  || (mouse > 0 && mouseNuevo < mouse)){
         personaje.retroceder();
         personaje.moviendo=1;
     }
-    if (keyboard[39] == true && personaje.agachado ==false){
+    if (keyboard[39] == true && personaje.agachado ==false  || (mouse > 0 && mouseNuevo > mouse)){
         personaje.moviendo=1;
         personaje.avanzar();
     }
@@ -479,6 +480,18 @@ addEvent(document,"keydown", function(e){
 addEvent(document,"keyup", function(e){
     keyboard[e.keyCode] = false;
 })
+
+addEvent(document,"mousedown", function(e){
+    mouse = e.x;
+})
+
+addEvent(document,"mouseup", function(e){
+ mouse = 0;
+})
+
+addEvent(document,"mousemove", function(e){
+    mouseNuevo = e.x;
+   })
 
 function addEvent(elemento, evento, funcion){
     elemento.addEventListener(evento, funcion, false)
