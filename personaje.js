@@ -52,6 +52,8 @@ class Personaje {
                 
             if (this.X > canvas.width/2){
                 dinamicosX +=this.velocidadX*this.direccion
+                offsetX += this.velocidadX*this.direccion
+                
                 for (const a of enemigos){
                     a.X -= this.velocidadX*this.direccion
                 }
@@ -79,6 +81,7 @@ class Personaje {
                 
                 if (this.X < canvas.width/2){
                     dinamicosX += this.velocidadX*this.direccion
+                    offsetX += this.velocidadX*this.direccion
                     
                 for (const a of enemigos){
                     a.X -= this.velocidadX*this.direccion

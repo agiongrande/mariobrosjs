@@ -379,8 +379,9 @@ function cargarNivel(nivel){
                 for (let indexY = 16; indexY <= 18; indexY++) {
                     plataformas.push(new Plataforma(28*tileX,tileY*indexY,37));
                 }
-                
+
                 enemigos.push(new Enemigo(tileX*27,tileY*14,23,-1,0,3,0));
+                premios.push(new Premio(tileX*27,tileY*5,16));
 
                 plataformas.push(new Plataforma(31*tileX,tileY*13,32));
                 for (let indexY = 14; indexY <= 18; indexY++) {
@@ -399,155 +400,155 @@ function cargarNivel(nivel){
                     plataformas.push(new Plataforma(34*tileX,tileY*indexY,37));
                 }
 
-  
+                enemigos.push(new Enemigo(tileX*33,tileY*12,23,-1,0,3,0));
+                premios.push(new Premio(tileX*33,tileY*3,16));
 
-  enemigos.push(new Enemigo(tileX*33,tileY*12,23,-1,0,3,0));
+                plataformas.push(new Plataforma(37*tileX,tileY*11,32));
+                for (let indexY = 12; indexY <= 18; indexY++) {
+                    plataformas.push(new Plataforma(37*tileX,tileY*indexY,35));
+                }
 
-  plataformas.push(new Plataforma(37*tileX,tileY*11,32));
-  for (let indexY = 12; indexY <= 18; indexY++) {
-      plataformas.push(new Plataforma(37*tileX,tileY*indexY,35));
-  }
+                for (let indexX = 38; indexX <= 39; indexX++) {
+                    plataformas.push(new Plataforma(indexX*tileX,tileY*11,33));
+                    for (let indexY = 12; indexY <= 18; indexY++) {
+                        plataformas.push(new Plataforma(indexX*tileX,tileY*indexY,36));
+                    }
+                }
 
-  for (let indexX = 38; indexX <= 39; indexX++) {
-      plataformas.push(new Plataforma(indexX*tileX,tileY*11,33));
-      for (let indexY = 12; indexY <= 18; indexY++) {
-          plataformas.push(new Plataforma(indexX*tileX,tileY*indexY,36));
-      }
-  }
+                plataformas.push(new Plataforma(40*tileX,tileY*11,34));
+                for (let indexY = 12; indexY <= 18; indexY++) {
+                    plataformas.push(new Plataforma(40*tileX,tileY*indexY,37));
+                }
 
-  plataformas.push(new Plataforma(40*tileX,tileY*11,34));
-  for (let indexY = 12; indexY <= 18; indexY++) {
-      plataformas.push(new Plataforma(40*tileX,tileY*indexY,37));
-  }
+                enemigos.push(new Enemigo(tileX*39,tileY*10,23,-1,0,3,0));
+                premios.push(new Premio(tileX*39,tileY*1,16));
 
-enemigos.push(new Enemigo(tileX*39,tileY*10,23,-1,0,3,0));
+                plataformas.push(new Plataforma(43*tileX,tileY*9,32));
+                for (let indexY = 10; indexY <= 18; indexY++) {
+                    plataformas.push(new Plataforma(43*tileX,tileY*indexY,35));
+                }
 
-plataformas.push(new Plataforma(43*tileX,tileY*9,32));
-for (let indexY = 10; indexY <= 18; indexY++) {
-    plataformas.push(new Plataforma(43*tileX,tileY*indexY,35));
-}
+                for (let indexX = 44; indexX <= 45; indexX++) {
+                    plataformas.push(new Plataforma(indexX*tileX,tileY*9,33));
+                    for (let indexY = 10; indexY <= 18; indexY++) {
+                        plataformas.push(new Plataforma(indexX*tileX,tileY*indexY,36));
+                    }
+                }
 
-for (let indexX = 44; indexX <= 45; indexX++) {
-    plataformas.push(new Plataforma(indexX*tileX,tileY*9,33));
-    for (let indexY = 10; indexY <= 18; indexY++) {
-        plataformas.push(new Plataforma(indexX*tileX,tileY*indexY,36));
-    }
-}
+                plataformas.push(new Plataforma(46*tileX,tileY*9,34));
+                for (let indexY = 10; indexY <= 18; indexY++) {
+                    plataformas.push(new Plataforma(46*tileX,tileY*indexY,37));
+                }
 
-plataformas.push(new Plataforma(46*tileX,tileY*9,34));
-for (let indexY = 10; indexY <= 18; indexY++) {
-    plataformas.push(new Plataforma(46*tileX,tileY*indexY,37));
-}
+                enemigos.push(new Enemigo(tileX*45,tileY*8,23,-1,0,3,0));
 
-enemigos.push(new Enemigo(tileX*45,tileY*8,23,-1,0,3,0));
+                plataformas.push(new Plataforma(49*tileX,tileY*7,32));
+                for (let indexY = 8; indexY <= 18; indexY++) {
+                    plataformas.push(new Plataforma(49*tileX,tileY*indexY,35));
+                }
 
-plataformas.push(new Plataforma(49*tileX,tileY*7,32));
-for (let indexY = 8; indexY <= 18; indexY++) {
-    plataformas.push(new Plataforma(49*tileX,tileY*indexY,35));
-}
+                for (let indexX = 50; indexX <= 51; indexX++) {
+                    plataformas.push(new Plataforma(indexX*tileX,tileY*7,33));
+                    for (let indexY = 8; indexY <= 18; indexY++) {
+                        plataformas.push(new Plataforma(indexX*tileX,tileY*indexY,36));
+                    }
+                }
 
-for (let indexX = 50; indexX <= 51; indexX++) {
-    plataformas.push(new Plataforma(indexX*tileX,tileY*7,33));
-    for (let indexY = 8; indexY <= 18; indexY++) {
-        plataformas.push(new Plataforma(indexX*tileX,tileY*indexY,36));
-    }
-}
+                plataformas.push(new Plataforma(52*tileX,tileY*7,34));
+                for (let indexY = 8; indexY <= 18; indexY++) {
+                    plataformas.push(new Plataforma(52*tileX,tileY*indexY,37));
+                }
 
-plataformas.push(new Plataforma(52*tileX,tileY*7,34));
-for (let indexY = 8; indexY <= 18; indexY++) {
-    plataformas.push(new Plataforma(52*tileX,tileY*indexY,37));
-}
-
-enemigos.push(new Enemigo(tileX*51,tileY*6,23,-1,0,3,0));
-
-
-plataformas.push(new Plataforma(56*tileX,tileY*5,42,0,0,0,2,10));
-plataformas.push(new Plataforma(57*tileX,tileY*5,43,0,0,0,2,10));
-plataformas.push(new Plataforma(58*tileX,tileY*5,44,0,0,0,2,10));
+                enemigos.push(new Enemigo(tileX*51,tileY*6,23,-1,0,3,0));
 
 
-plataformas.push(new Plataforma(68*tileX,tileY*3,42,0,0,0,2,7));
-plataformas.push(new Plataforma(69*tileX,tileY*3,43,0,0,0,2,7));
-plataformas.push(new Plataforma(70*tileX,tileY*3,44,0,0,0,2,7));
-
-enemigos.push(new Enemigo(tileX*69,tileY*2,23,-1,0,3,0));
-
-plataformas.push(new Plataforma(68*tileX,tileY*10,42,0,0,0,2,7));
-plataformas.push(new Plataforma(69*tileX,tileY*10,43,0,0,0,2,7));
-plataformas.push(new Plataforma(70*tileX,tileY*10,44,0,0,0,2,7));
-
-enemigos.push(new Enemigo(tileX*69,tileY*9,23,-1,0,3,0));
-
-plataformas.push(new Plataforma(74*tileX,tileY*7,42,0,0,0,2,13));
-plataformas.push(new Plataforma(75*tileX,tileY*7,43,0,0,0,2,13));
-plataformas.push(new Plataforma(76*tileX,tileY*7,43,0,0,0,2,13));
-plataformas.push(new Plataforma(77*tileX,tileY*7,44,0,0,0,2,13));
-
-enemigos.push(new Enemigo(tileX*75,tileY*6,23,-1,0,3,0));
-
-plataformas.push(new Plataforma(80*tileX,tileY*11,32));
-for (let indexY = 12; indexY <= 18; indexY++) {
-    plataformas.push(new Plataforma(80*tileX,tileY*indexY,35));
-}
-
-for (let indexX = 81; indexX <= 85; indexX++) {
-    plataformas.push(new Plataforma(indexX*tileX,tileY*11,33));
-    for (let indexY = 12; indexY <= 18; indexY++) {
-        plataformas.push(new Plataforma(indexX*tileX,tileY*indexY,36));
-    }
-}
-
-plataformas.push(new Plataforma(86*tileX,tileY*11,34));
-for (let indexY = 12; indexY <= 16; indexY++) {
-    plataformas.push(new Plataforma(86*tileX,tileY*indexY,37));
-}
-
-plataformas.push(new Plataforma(86*tileX,tileY*13,36));
-plataformas.push(new Plataforma(86*tileX,tileY*14,36));
-
-plataformas.push(new Plataforma(86*tileX,tileY*17,36));
-plataformas.push(new Plataforma(86*tileX,tileY*18,36));
-
-plataformas.push(new Plataforma(87*tileX,tileY*13,57));
-plataformas.push(new Plataforma(88*tileX,tileY*13,58));
-
-enemigos.push(new Enemigo(tileX*87,tileY*14,23,1,0,3,0));
-
-for (let indexX = 87; indexX <= 99; indexX++) {
-    plataformas.push(new Plataforma(indexX*tileX,tileY*17,33));
-        plataformas.push(new Plataforma(indexX*tileX,tileY*18,36));
-}
-
-plataformas.push(new Plataforma(100*tileX,tileY*11,32));
-for (let indexY = 12; indexY <= 16; indexY++) {
-    plataformas.push(new Plataforma(100*tileX,tileY*indexY,35));
-}
+                plataformas.push(new Plataforma(56*tileX,tileY*5,42,0,0,0,2,10));
+                plataformas.push(new Plataforma(57*tileX,tileY*5,43,0,0,0,2,10));
+                plataformas.push(new Plataforma(58*tileX,tileY*5,44,0,0,0,2,10));
 
 
-plataformas.push(new Plataforma(100*tileX,tileY*17,36));
-plataformas.push(new Plataforma(100*tileX,tileY*18,36));
+                plataformas.push(new Plataforma(68*tileX,tileY*3,42,0,0,0,2,7));
+                plataformas.push(new Plataforma(69*tileX,tileY*3,43,0,0,0,2,7));
+                plataformas.push(new Plataforma(70*tileX,tileY*3,44,0,0,0,2,7));
 
-enemigos.push(new Enemigo(tileX*100,tileY*10,23,-1,0,3,0));
+                enemigos.push(new Enemigo(tileX*69,tileY*2,23,-1,0,3,0));
 
-for (let indexX = 101; indexX <= 109; indexX++) {
-    plataformas.push(new Plataforma(indexX*tileX,tileY*11,33));
-    for (let indexY = 12; indexY <= 18; indexY++) {
-        plataformas.push(new Plataforma(indexX*tileX,tileY*indexY,36));
-    }
-}
+                plataformas.push(new Plataforma(68*tileX,tileY*10,42,0,0,0,2,7));
+                plataformas.push(new Plataforma(69*tileX,tileY*10,43,0,0,0,2,7));
+                plataformas.push(new Plataforma(70*tileX,tileY*10,44,0,0,0,2,7));
 
-plataformas.push(new Plataforma(110*tileX,tileY*11,34));
-for (let indexY = 12; indexY <= 18; indexY++) {
-    plataformas.push(new Plataforma(110*tileX,tileY*indexY,37));
-}
+                enemigos.push(new Enemigo(tileX*69,tileY*9,23,-1,0,3,0));
 
-plataformas.push(new Plataforma(108*tileX,tileY*7,5,1,6,60,0,0));
+                plataformas.push(new Plataforma(74*tileX,tileY*7,42,0,0,0,2,13));
+                plataformas.push(new Plataforma(75*tileX,tileY*7,43,0,0,0,2,13));
+                plataformas.push(new Plataforma(76*tileX,tileY*7,43,0,0,0,2,13));
+                plataformas.push(new Plataforma(77*tileX,tileY*7,44,0,0,0,2,13));
 
-enemigosDinamicos = [
-    { "id": 0, "grafico": 25, "tiempo": 400, "X": 89, "Y": 13, "direccion": -1, "velocidad": 10, "timerDisparo":0,"antiGravedad":0}, 
- //   { "id": 1, "grafico": 25, "tiempo": 450, "X": 97, "Y": 11, "direccion": -1, "velocidad": 10, "timerDisparo":0,"antiGravedad":0 },
-  //  { "id": 2, "grafico": 61, "tiempo": 500, "X": 180, "Y": 9, "direccion": -1, "velocidad": 5, "timerDisparo":0,"antiGravedad":1 }
-]
+                enemigos.push(new Enemigo(tileX*75,tileY*6,23,-1,0,3,0));
 
-}
+                plataformas.push(new Plataforma(80*tileX,tileY*11,32));
+                for (let indexY = 12; indexY <= 18; indexY++) {
+                    plataformas.push(new Plataforma(80*tileX,tileY*indexY,35));
+                }
+
+                for (let indexX = 81; indexX <= 85; indexX++) {
+                    plataformas.push(new Plataforma(indexX*tileX,tileY*11,33));
+                    for (let indexY = 12; indexY <= 18; indexY++) {
+                        plataformas.push(new Plataforma(indexX*tileX,tileY*indexY,36));
+                    }
+                }
+
+                plataformas.push(new Plataforma(86*tileX,tileY*11,34));
+                for (let indexY = 12; indexY <= 16; indexY++) {
+                    plataformas.push(new Plataforma(86*tileX,tileY*indexY,37));
+                }
+
+                plataformas.push(new Plataforma(86*tileX,tileY*13,36));
+                plataformas.push(new Plataforma(86*tileX,tileY*14,36));
+
+                plataformas.push(new Plataforma(86*tileX,tileY*17,36));
+                plataformas.push(new Plataforma(86*tileX,tileY*18,36));
+
+                plataformas.push(new Plataforma(87*tileX,tileY*13,57));
+                plataformas.push(new Plataforma(88*tileX,tileY*13,58));
+
+                enemigos.push(new Enemigo(tileX*87,tileY*14,23,1,0,3,0));
+
+                for (let indexX = 87; indexX <= 99; indexX++) {
+                    plataformas.push(new Plataforma(indexX*tileX,tileY*17,33));
+                        plataformas.push(new Plataforma(indexX*tileX,tileY*18,36));
+                }
+
+                plataformas.push(new Plataforma(100*tileX,tileY*11,32));
+                for (let indexY = 12; indexY <= 16; indexY++) {
+                    plataformas.push(new Plataforma(100*tileX,tileY*indexY,35));
+                }
+
+
+                plataformas.push(new Plataforma(100*tileX,tileY*17,36));
+                plataformas.push(new Plataforma(100*tileX,tileY*18,36));
+
+                enemigos.push(new Enemigo(tileX*100,tileY*10,23,-1,0,3,0));
+
+                for (let indexX = 101; indexX <= 109; indexX++) {
+                    plataformas.push(new Plataforma(indexX*tileX,tileY*11,33));
+                    for (let indexY = 12; indexY <= 18; indexY++) {
+                        plataformas.push(new Plataforma(indexX*tileX,tileY*indexY,36));
+                    }
+                }
+
+                plataformas.push(new Plataforma(110*tileX,tileY*11,34));
+                for (let indexY = 12; indexY <= 18; indexY++) {
+                    plataformas.push(new Plataforma(110*tileX,tileY*indexY,37));
+                }
+
+                plataformas.push(new Plataforma(108*tileX,tileY*7,5,1,6,60,0,0));
+
+                enemigosDinamicos = [
+                    { "id": 0, "grafico": 25, "tiempo": 400, "X": 89, "Y": 13, "direccion": -1, "velocidad": 10, "timerDisparo":0,"antiGravedad":0}, 
+                //   { "id": 1, "grafico": 25, "tiempo": 450, "X": 97, "Y": 11, "direccion": -1, "velocidad": 10, "timerDisparo":0,"antiGravedad":0 },
+                //  { "id": 2, "grafico": 61, "tiempo": 500, "X": 180, "Y": 9, "direccion": -1, "velocidad": 5, "timerDisparo":0,"antiGravedad":1 }
+                ]
+
+                }
 }

@@ -19,6 +19,7 @@ let enemigosDinamicos = [];
 let dinamicosX= 0
 let canvas = document.querySelector('canvas')
 let c = canvas.getContext("2d")
+let offsetX = 0
 
 canvas.width = 1280;
 canvas.height = 570;
@@ -82,23 +83,16 @@ function render(){
         c.fillStyle = "#ff0000";
         c.fillText(welcomeMessage2, canvas.width/2, canvas.height/2);
     } else if (etapaJuego ==3){
-        c.drawImage(imgFondo,0,0)
-        var pat = c.createPattern(imgFondo, "repeat");
-        c.rect(0, 0, 1500, 1500);
-        c.fillStyle = pat;
-        c.fill();
-        c.font = "bold 24px verdana, sans-serif ";
-        let welcomeMessage2 ="PERDISTE! APRETA ENTER PARA REINTENTAR";
-        c.textAlign = "center";
-        c.textBaseline = "bottom";
-        c.fillStyle = "#ff0000";
-        c.fillText(welcomeMessage2, canvas.width/2, canvas.height/2);
+        c.drawImage(imgGameOver,0,0)
     } else if (etapaJuego ==2){
-        c.drawImage(imgFondo,0,0)
+        c.drawImage(imgFondo,300,0,300,0,300,0,300,0)
         var pat = c.createPattern(imgFondo, "repeat");
-        c.rect(0, 0, 1500, 1500);
-        c.fillStyle = pat;
-        c.fill();
+        c.rect(0, 0, 1500, 768);
+        c.fillStyle = pat;      
+        c.save();
+        c.translate(offsetX*-1, 0);
+        c.fillRect(-650, 0, 7000, 700);
+        c.restore();
 
         for (let index = 0; index < vidas; index++) {
             c.drawImage(imgVidas.imagen,imgVidas.x,imgVidas.y,imgVidas.ancho,imgVidas.alto,imgVidas.margenX*index+10,imgVidas.margenY,imgVidas.ancho,imgVidas.alto)
@@ -303,12 +297,15 @@ function moverPersonaje(){
 }
 
 Timer();
-
 function Timer(){
     render();
-    if (etapaJuego == 1 || etapaJuego ==3){
+    if (etapaJuego == 1){
         if (keyboard[13] == true){
             empezarJuego();
+        }
+    }else if (etapaJuego == 3){
+        if (keyboard[13] == true){
+            etapaJuego=1;
         }
     }else if (etapaJuego == 2){
         if (timerMuerto ==0){
@@ -462,6 +459,18 @@ function chocarPremios(){
             }
         }
     }
+}
+
+//const p = document.getElementById("canvas"); // Encuentra el elemento de párrafo en la página a través de su id "foo"
+canvas.onclick = mostrarAlerta; // Agrega la función onclick al elemento
+
+function mostrarAlerta() {
+if (etapaJuego == 1){
+    empezarJuego();
+}
+if (etapaJuego == 3){
+    etapaJuego = 1
+}
 }
 
 addEvent(document,"keydown", function(e){

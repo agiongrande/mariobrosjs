@@ -4,6 +4,9 @@ imgEnemigos.src = 'graficos/4307.png';
 let imgVarios = new Image();
 imgVarios.src = 'graficos/4320.png';
 
+let imgGameOver = new Image();
+imgGameOver.src = 'graficos/gameover.png';
+
 let imgPremios = new Image();
 imgPremios.src = 'graficos/31609.png';
 

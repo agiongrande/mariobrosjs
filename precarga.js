@@ -23,6 +23,6 @@ var preloadPictures = function(pictureUrls, callback) {
   }
 };
 
-preloadPictures(['graficos/4307.png','graficos/105636.png','graficos/mariob.png', 'graficos/4320.png', 'graficos/31609.png', 'graficos/65292.png'], function(){
+preloadPictures(['graficos/4307.png','graficos/gameover.png','graficos/105636.png','graficos/mariob.png', 'graficos/4320.png', 'graficos/31609.png', 'graficos/65292.png'], function(){
   etapaJuego=1;
 });
