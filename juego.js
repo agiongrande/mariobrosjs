@@ -34,7 +34,7 @@ escenario = {}
 
 function empezarJuego(){
     vidas = 3;
-    numeroNivel = 3;
+    numeroNivel = 1;
     empezarNivel()
     }
 
@@ -60,7 +60,6 @@ function empezarNivel(){
 
 let keyboard = {};
 let mouse = 0;
-let mouseNuevo = 0;
 
 
 function render(){
@@ -75,14 +74,13 @@ function render(){
         c.fillText(welcomeMessage2, canvas.width/2, canvas.height/2);
         c.fillStyle = "#ffffff";
     } else if (etapaJuego ==1){
-        c.fillStyle = "white";
-        c.fillRect(0, 0, canvas.width, canvas.height);
+        c.drawImage(imgPresentacion,0,0)
         c.font = "bold 24px verdana, sans-serif ";
-        let welcomeMessage2 ="PRESIONA ENTER PARA COMENZAR";
+        let welcomeMessage2 ="PRESIONA ENTER";
         c.textAlign = "center";
         c.textBaseline = "bottom";
         c.fillStyle = "#ff0000";
-        c.fillText(welcomeMessage2, canvas.width/2, canvas.height/2);
+        c.fillText(welcomeMessage2, canvas.width/2, 500);
     } else if (etapaJuego ==3){
         c.drawImage(imgGameOver,0,0)
     } else if (etapaJuego ==2){
@@ -92,7 +90,7 @@ function render(){
         c.fillStyle = pat;      
         c.save();
         c.translate(offsetX*-1, 0);
-        c.fillRect(-650, 0, 7000, 700);
+        c.fillRect(-650, 0, 15000, 700);
         c.restore();
 
         for (let index = 0; index < vidas; index++) {
@@ -109,7 +107,7 @@ function render(){
         c.fillText(welcomeMessage, canvas.width-26-20, 36);
 
         c.font = "bold 24px verdana, sans-serif ";
-        var welcomeMessage ="Nivel " + numeroNivel;
+        var welcomeMessage ="Mundo " + numeroNivel;
         c.textAlign = "start";
         c.textBaseline = "bottom";
         c.fillStyle = "#ff0000";
@@ -267,11 +265,11 @@ function moverPersonaje(){
     if (keyboard[40] == true){
         personaje.agachar();
     }
-    if (keyboard[37] == true && personaje.agachado ==false  || (mouse > 0 && mouseNuevo < mouse)){
+    if (keyboard[37] == true && personaje.agachado ==false  || (mouse < 0)){
         personaje.retroceder();
         personaje.moviendo=1;
     }
-    if (keyboard[39] == true && personaje.agachado ==false  || (mouse > 0 && mouseNuevo > mouse)){
+    if (keyboard[39] == true && personaje.agachado ==false  || (mouse > 0)){
         personaje.moviendo=1;
         personaje.avanzar();
     }
@@ -287,7 +285,6 @@ function moverPersonaje(){
         indexacion(personaje,3);
     } else if (personaje.poder ==2) {
         indexacion(personaje,20);
-        
 
     }
         personaje.timerRebote = 0;
@@ -381,7 +378,7 @@ function chocarEnemigo(a){
 
 function chocarPersonaje(b){
     let a = personaje
-        if (b.Y + b.alto >= a.Y && b.Y < a.alto + a.Y) {
+        if ((b.Y + b.alto >= a.Y && b.Y + b.alto <= a.alto + a.Y)  || (b.Y  >= a.Y && b.Y <= a.alto + a.Y)) {
             if (b.X < a.X + a.ancho -a.offsetX  && b.X + b.ancho > a.X +a.offsetX  ) {
                 if (a.timerInmortal == 0){
                     perder();
@@ -482,16 +479,19 @@ addEvent(document,"keyup", function(e){
 })
 
 addEvent(document,"mousedown", function(e){
-    mouse = e.x;
+    if (e.x < canvas.width/2){
+        mouse = -1
+    } else {
+        mouse = 1
+    }
+    ;
 })
 
 addEvent(document,"mouseup", function(e){
  mouse = 0;
 })
 
-addEvent(document,"mousemove", function(e){
-    mouseNuevo = e.x;
-   })
+
 
 function addEvent(elemento, evento, funcion){
     elemento.addEventListener(evento, funcion, false)

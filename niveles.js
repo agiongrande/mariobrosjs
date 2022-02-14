@@ -330,8 +330,8 @@ function cargarNivel(nivel){
             plataformas.push(new Plataforma(164*tileX,tileY*10,48,0,0,0,2,10));
             plataformas.push(new Plataforma(165*tileX,tileY*10,50,0,0,0,2,10));
 
-            plataformas.push(new Plataforma(168*tileX,tileY*6,48,0,0,0,2,10));
-            plataformas.push(new Plataforma(169*tileX,tileY*6,50,0,0,0,2,10));
+            plataformas.push(new Plataforma(168*tileX,tileY*6,48,0,0,0,0,0));
+            plataformas.push(new Plataforma(169*tileX,tileY*6,50,0,0,0,0,0));
 
             premios.push(new Premio(tileX*169,tileY*5,60));
 
@@ -379,7 +379,7 @@ function cargarNivel(nivel){
                 for (let indexY = 16; indexY <= 18; indexY++) {
                     plataformas.push(new Plataforma(28*tileX,tileY*indexY,37));
                 }
-
+                
                 enemigos.push(new Enemigo(tileX*27,tileY*14,23,-1,0,3,0));
                 premios.push(new Premio(tileX*27,tileY*5,16));
 

@@ -7,6 +7,9 @@ imgVarios.src = 'graficos/4320.png';
 let imgGameOver = new Image();
 imgGameOver.src = 'graficos/gameover.png';
 
+let imgPresentacion = new Image();
+imgPresentacion.src = 'graficos/presentacion.png';
+
 let imgPremios = new Image();
 imgPremios.src = 'graficos/31609.png';
 
