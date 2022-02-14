@@ -479,6 +479,7 @@ addEvent(document,"keyup", function(e){
 })
 
 addEvent(document,"mousedown", function(e){
+    alert(e.x)
     if (e.x < canvas.width/2){
         mouse = -1
     } else {
