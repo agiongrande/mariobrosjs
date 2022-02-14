@@ -60,6 +60,8 @@ function empezarNivel(){
 
 let keyboard = {};
 let mouse = 0;
+let mouseX =0;
+let mouseSaltar = false;
 
 
 function render(){
@@ -277,7 +279,7 @@ function moverPersonaje(){
         personaje.timerDisparo = 50;
         disparos.push(new Disparo(personaje.X,personaje.Y + personaje.alto/2,22,personaje,personaje.direccion)); //fuego
     }
-    if (keyboard[38] == true && (personaje.saltando == 0 || personaje.timerRebote >0)){
+    if ((keyboard[38] == true || mouseSaltar==true) && (personaje.saltando == 0 || personaje.timerRebote >0)){
         //personaje.frameActual=0;
         if (personaje.poder == 0){
         indexacion(personaje,18);
@@ -479,17 +481,40 @@ addEvent(document,"keyup", function(e){
 })
 
 addEvent(document,"pointerdown", function(e){
-    if (e.x < canvas.width/2){
-        mouse = -1
-    } else {
-        mouse = 1
-    }
-    ;
+    if (e.x < 100 && e.y > 500){
+    mouseX=e.x
+    console.log("pointerdown"+mouseX)
+}
+if (e.x > 800 && e.y > 500){
+ 
+mouseSaltar=true;
+}
 })
 
 addEvent(document,"pointerup", function(e){
  mouse = 0;
+ mouseX=0;
+ mouseSaltar=0;
+ console.log("pointerup")
 })
+
+addEvent(document,"pointercancel", function(e){
+    mouse = 0;
+    mouseX=0
+    console.log("pointercancel")
+   })
+
+addEvent(document,"pointermove", function(e){
+    if (mouseX != 0){
+        if (e.x>mouseX){
+        mouse=1;
+        }else{
+            mouse=-1
+    }
+}
+    console.log("pointermove"+e.x)
+}
+    )
 
 
 
