@@ -478,8 +478,7 @@ addEvent(document,"keyup", function(e){
     keyboard[e.keyCode] = false;
 })
 
-addEvent(document,"touchstart", function(e){
-    alert(e.x)
+addEvent(document,"pointerdown", function(e){
     if (e.x < canvas.width/2){
         mouse = -1
     } else {
@@ -488,7 +487,7 @@ addEvent(document,"touchstart", function(e){
     ;
 })
 
-addEvent(document,"touchend", function(e){
+addEvent(document,"pointerup", function(e){
  mouse = 0;
 })
 
