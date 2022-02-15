@@ -493,7 +493,7 @@ addEvent(document,"pointerdown", function(e){
     mouseID=e.pointerId
     console.log("pointerdown"+e.pointerId)
 }
-if (e.x < controlAncho + controlX  + 600 && e.x > controlX + 600 && e.y > controlY && e.y < controlAlto+controlY){
+if (e.x < controlAncho + controlX  + 1000 && e.x > controlX + 1000 && e.y > controlY && e.y < controlAlto+controlY){
 
 mouseSaltar=true;
 mouseSaltarID=e.pointerId 
