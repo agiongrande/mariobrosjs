@@ -24,11 +24,11 @@ let offsetX = 0
 canvas.width = 1280;
 canvas.height = 570;
 
-botonX =800
-controlX =50
-controlY=10
-controlAncho=100
-controlAlto=100
+let botonX =800
+let controlX =50
+let controlY=10
+let controlAncho=100
+let controlAlto=100
 
 let intervaloMover=1000/20
 
@@ -195,7 +195,7 @@ function render(){
         c.fillRect(controlX, controlY, controlAncho, controlAlto);
 
         c.fillStyle = "white";
-        c.fillRect(botonX, botonY, controlAncho, controlAlto);
+        c.fillRect(botonX, controlY, controlAncho, controlAlto);
     }
 }
 
