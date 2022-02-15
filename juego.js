@@ -62,6 +62,8 @@ let keyboard = {};
 let mouse = 0;
 let mouseX =0;
 let mouseSaltar = false;
+let mouseID =0
+let mouseSaltarID=0
 
 
 function render(){
@@ -483,26 +485,38 @@ addEvent(document,"keyup", function(e){
 addEvent(document,"pointerdown", function(e){
     if (e.x < 100 && e.y > 500){
     mouseX=e.x
-    console.log("pointerdown"+mouseX)
+    mouseID=e.pointerId
+    console.log("pointerdown"+e.pointerId)
 }
 if (e.x > 800 && e.y > 500){
- 
 mouseSaltar=true;
+mouseSaltarID=e.pointerId 
 }
 })
 
 addEvent(document,"pointerup", function(e){
- mouse = 0;
- mouseX=0;
- mouseSaltar=0;
- console.log("pointerup")
+    console.log("up")
+    cancelarMouse(e);
 })
 
 addEvent(document,"pointercancel", function(e){
-    mouse = 0;
-    mouseX=0
-    console.log("pointercancel")
+    console.log("cancel")
+    cancelarMouse(e);
    })
+
+   function cancelarMouse(e){
+    if (mouseID == e.pointerId){
+        console.log("Cancelo mouse:" + mouseID + " - " + e.pointerId)
+        mouse = 0;
+        mouseX=0;
+        mouseID=0;
+        
+    } else if (mouseSaltarID==e.pointerId){
+        mouseSaltar=0
+        mouseSaltarID=0
+        console.log("Cancelo saltar")
+    }
+   }
 
 addEvent(document,"pointermove", function(e){
     if (mouseX != 0){
