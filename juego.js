@@ -484,7 +484,7 @@ addEvent(document,"keyup", function(e){
     keyboard[e.keyCode] = false;
 })
 
-addEvent(document,"pointerdown", function(e){
+addEvent(canvas,"pointerdown", function(e){
     if (etapaJuego == 1){
         empezarJuego();
     }
@@ -504,12 +504,12 @@ mouseSaltarID=e.pointerId
 }
 })
 
-addEvent(document,"pointerup", function(e){
+addEvent(canvas,"pointerup", function(e){
     console.log("up")
     cancelarMouse(e);
 })
 
-addEvent(document,"pointercancel", function(e){
+addEvent(canvas,"pointercancel", function(e){
     console.log("cancel")
     cancelarMouse(e);
    })
@@ -528,7 +528,7 @@ addEvent(document,"pointercancel", function(e){
     }
    }
 
-addEvent(document,"pointermove", function(e){
+addEvent(canvas,"pointermove", function(e){
     if (mouseX != 0){
         if (e.x>mouseX){
             mouse=1;
