@@ -25,7 +25,7 @@ canvas.width = 1280;
 canvas.height = 570;
 
 controlX =50
-controlY=450
+controlY=10
 controlAncho=100
 controlAlto=100
 
@@ -493,7 +493,8 @@ addEvent(document,"pointerdown", function(e){
     mouseID=e.pointerId
     console.log("pointerdown"+e.pointerId)
 }
-if (e.x > 800 && e.y > 500){
+if (e.x < controlAncho + controlX  + 600 && e.x > controlX + 600 && e.y > controlY && e.y < controlAlto+controlY){
+
 mouseSaltar=true;
 mouseSaltarID=e.pointerId 
 }
