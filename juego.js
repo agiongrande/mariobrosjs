@@ -481,7 +481,13 @@ addEvent(document,"keyup", function(e){
 })
 
 addEvent(document,"pointerdown", function(e){
-    alert(e.x + " - " + controlAncho + " " + controlX + " " + controlY + " " + controlAlto)
+    if (etapaJuego == 1){
+        empezarJuego();
+    }
+    if (etapaJuego == 3){
+        etapaJuego = 1
+    }
+    alert(e.y + " - " + controlAncho + " " + controlX + " " + controlY + " " + controlAlto)
     if (e.x < controlAncho + controlX && e.x > controlX && e.y > controlY && e.y < controlAlto+controlY){
     mouseX=e.x
     mouseID=e.pointerId
@@ -494,12 +500,6 @@ mouseSaltarID=e.pointerId
 })
 
 addEvent(document,"pointerup", function(e){
-    if (etapaJuego == 1){
-        empezarJuego();
-    }
-    if (etapaJuego == 3){
-        etapaJuego = 1
-    }
     console.log("up")
     cancelarMouse(e);
 })
