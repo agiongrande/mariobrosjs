@@ -24,6 +24,7 @@ let offsetX = 0
 canvas.width = 1280;
 canvas.height = 570;
 
+botonX =800
 controlX =50
 controlY=10
 controlAncho=100
@@ -192,6 +193,9 @@ function render(){
 
         c.fillStyle = "white";
         c.fillRect(controlX, controlY, controlAncho, controlAlto);
+
+        c.fillStyle = "white";
+        c.fillRect(botonX, botonY, controlAncho, controlAlto);
     }
 }
 
@@ -493,7 +497,7 @@ addEvent(document,"pointerdown", function(e){
     mouseID=e.pointerId
     console.log("pointerdown"+e.pointerId)
 }
-if (e.x < controlAncho + controlX  + 800 && e.x > controlX + 800 && e.y > controlY && e.y < controlAlto+controlY){
+if (e.x < controlAncho + botonX && e.x > botonX && e.y > controlY && e.y < controlAlto+controlY){
 
 mouseSaltar=true;
 mouseSaltarID=e.pointerId 
