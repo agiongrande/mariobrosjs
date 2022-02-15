@@ -487,13 +487,13 @@ addEvent(document,"pointerdown", function(e){
     if (etapaJuego == 3){
         etapaJuego = 1
     }
-  //  alert(e.y + " - " + controlAncho + " " + controlX + " " + controlY + " " + controlAlto)
+    alert(e.x + " - " + controlAncho + " " + controlX + " " + controlY + " " + controlAlto)
     if (e.x < controlAncho + controlX && e.x > controlX && e.y > controlY && e.y < controlAlto+controlY){
     mouseX=e.x
     mouseID=e.pointerId
     console.log("pointerdown"+e.pointerId)
 }
-if (e.x < controlAncho + controlX  + 1000 && e.x > controlX + 1000 && e.y > controlY && e.y < controlAlto+controlY){
+if (e.x < controlAncho + controlX  + 800 && e.x > controlX + 800 && e.y > controlY && e.y < controlAlto+controlY){
 
 mouseSaltar=true;
 mouseSaltarID=e.pointerId 
