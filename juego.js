@@ -487,7 +487,7 @@ addEvent(document,"pointerdown", function(e){
     if (etapaJuego == 3){
         etapaJuego = 1
     }
-    alert(e.y + " - " + controlAncho + " " + controlX + " " + controlY + " " + controlAlto)
+  //  alert(e.y + " - " + controlAncho + " " + controlX + " " + controlY + " " + controlAlto)
     if (e.x < controlAncho + controlX && e.x > controlX && e.y > controlY && e.y < controlAlto+controlY){
     mouseX=e.x
     mouseID=e.pointerId
