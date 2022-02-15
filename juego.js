@@ -24,6 +24,11 @@ let offsetX = 0
 canvas.width = 1280;
 canvas.height = 570;
 
+controlX =50
+controlY=450
+controlAncho=100
+controlAlto=100
+
 let intervaloMover=1000/20
 
 let escenario = [];
@@ -88,6 +93,7 @@ function render(){
     } else if (etapaJuego ==3){
         c.drawImage(imgGameOver,0,0)
     } else if (etapaJuego ==2){
+
         c.drawImage(imgFondo,300,0,300,0,300,0,300,0)
         var pat = c.createPattern(imgFondo, "repeat");
         c.rect(0, 0, 1500, 768);
@@ -183,6 +189,9 @@ function render(){
         personaje.frameActual ++;
         if(personaje.frameActual>=personaje.frames) personaje.frameActual=0
 
+
+        c.fillStyle = "white";
+        c.fillRect(controlX, controlY, controlAncho, controlAlto);
     }
 }
 
@@ -463,17 +472,6 @@ function chocarPremios(){
     }
 }
 
-//const p = document.getElementById("canvas"); // Encuentra el elemento de párrafo en la página a través de su id "foo"
-canvas.onclick = mostrarAlerta; // Agrega la función onclick al elemento
-
-function mostrarAlerta() {
-if (etapaJuego == 1){
-    empezarJuego();
-}
-if (etapaJuego == 3){
-    etapaJuego = 1
-}
-}
 
 addEvent(document,"keydown", function(e){
     keyboard[e.keyCode] = true;
@@ -483,7 +481,8 @@ addEvent(document,"keyup", function(e){
 })
 
 addEvent(document,"pointerdown", function(e){
-    if (e.x < 100 && e.y > 500){
+   // alert(e.x + " - " + controlAncho + " " + controlX + " " + controlY + " " + controlAlto)
+    if (e.x < controlAncho + controlX && e.x > controlX && e.y > controlY && e.y < controlAlto+controlY){
     mouseX=e.x
     mouseID=e.pointerId
     console.log("pointerdown"+e.pointerId)
@@ -495,6 +494,12 @@ mouseSaltarID=e.pointerId
 })
 
 addEvent(document,"pointerup", function(e){
+    if (etapaJuego == 1){
+        empezarJuego();
+    }
+    if (etapaJuego == 3){
+        etapaJuego = 1
+    }
     console.log("up")
     cancelarMouse(e);
 })
@@ -521,7 +526,7 @@ addEvent(document,"pointercancel", function(e){
 addEvent(document,"pointermove", function(e){
     if (mouseX != 0){
         if (e.x>mouseX){
-        mouse=1;
+            mouse=1;
         }else{
             mouse=-1
     }
