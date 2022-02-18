@@ -42,6 +42,7 @@ class Personaje {
         
             }
             if (personaje.Y +personaje.alto > canvas.height){
+                personaje.poder=0;
                 perder();
             }
         }
@@ -115,6 +116,15 @@ class Personaje {
                 indexacion(this,21)
                 this.moviendo= false;
                 this.agachado = true;
+            }
+        }
+        this.graficoInicioNivel = function(){
+            if (this.poder==1){
+                indexacion(this,2)
+            }else if (this.poder==2){
+                indexacion(this,19)
+            }else{
+                indexacion(this,17)
             }
         }
         this.aplicarPremio = function(cualPoder){

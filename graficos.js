@@ -1,6 +1,39 @@
 let imgEnemigos = new Image();
 imgEnemigos.src = 'graficos/4307.png';
 
+let botonA = new Image();
+botonA.src = 'graficos/botonA.png';
+
+let botonAPush = new Image();
+botonAPush.src = 'graficos/botonAPush.png';
+
+let palanca = new Image();
+palanca.src = 'graficos/palanca.png';
+
+let palancaDer = new Image();
+palancaDer.src = 'graficos/palancaDer.png';
+
+let palancaIzq = new Image();
+palancaIzq.src = 'graficos/palancaIzq.png';
+
+let palancaAba = new Image();
+palancaAba.src = 'graficos/palancaAba.png';
+
+let palancaArr = new Image();
+palancaArr.src = 'graficos/palancaArr.png';
+
+let palancaArrDer = new Image();
+palancaArrDer.src = 'graficos/palancaArrDer.png';
+
+let palancaArrIzq = new Image();
+palancaArrIzq.src = 'graficos/palancaArrIzq.png';
+
+let palancaAbaDer = new Image();
+palancaAbaDer.src = 'graficos/palancaAbaDer.png';
+
+let palancaAbaIzq = new Image();
+palancaAbaIzq.src = 'graficos/palancaAbaIzq.png';
+
 let imgVarios = new Image();
 imgVarios.src = 'graficos/4320.png';
 

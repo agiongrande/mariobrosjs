@@ -8,15 +8,15 @@ let enemigos = [];
 let disparos = [];
 let premios = [];
 let plataformas = [];
-let personaje
+let enemigosDinamicos = [];
 let timerCriaturas=0;
+let dinamicosX= 0
+let personaje
 let cantMonedas = 0;
 let vidas
 let numeroNivel
 let tileX = 30
 let tileY=30
-let enemigosDinamicos = [];
-let dinamicosX= 0
 let canvas = document.querySelector('canvas')
 let c = canvas.getContext("2d")
 let offsetX = 0
@@ -24,23 +24,27 @@ let offsetX = 0
 canvas.width = 1280;
 canvas.height = 570;
 
-let botonX =800
+let offsetCanvasX= canvas.getBoundingClientRect().x
+let offsetCanvasY= canvas.getBoundingClientRect().y
+
+
+let botonAncho =75
+let botonAlto =75
+let botonX =canvas.width-botonAncho -100
+let botonY =canvas.height-botonAlto-50
+
 let controlX =50
-let controlY=10
 let controlAncho=100
 let controlAlto=100
+let controlY=canvas.height-controlAlto-50
 
-let intervaloMover=1000/20
-
-let escenario = [];
-escenario = {}
-
+let intervaloMover=45
 
 //empezarJuego();
 
 function empezarJuego(){
     vidas = 3;
-    numeroNivel = 1;
+    numeroNivel = 4;
     empezarNivel()
     }
 
@@ -48,6 +52,7 @@ function empezarJuego(){
         enemigosDinamicos = [];
         numDisparo = 0
         dinamicosX=0
+        offsetX=0
         numPremio = 0
         numPlataforma = 0
         numEnemigo = 0
@@ -67,9 +72,11 @@ function empezarNivel(){
 let keyboard = {};
 let mouse = 0;
 let mouseX =0;
+let mouseY =0;
 let mouseSaltar = false;
+let mouseDisparar = false;
 let mouseID =0
-let mouseSaltarID=0
+let mouseDispararID=0
 
 
 function render(){
@@ -98,7 +105,7 @@ function render(){
         c.drawImage(imgFondo,300,0,300,0,300,0,300,0)
         var pat = c.createPattern(imgFondo, "repeat");
         c.rect(0, 0, 1500, 768);
-        c.fillStyle = pat;      
+        c.fillStyle = pat;
         c.save();
         c.translate(offsetX*-1, 0);
         c.fillRect(-650, 0, 15000, 700);
@@ -124,16 +131,16 @@ function render(){
         c.fillStyle = "#ff0000";
         c.fillText(welcomeMessage, 10, 80);
 
-        for (const prem of premios){
-            c.drawImage(prem.img,prem.imgX[prem.frameActual],prem.imgY[prem.frameActual],prem.imgAncho[prem.frameActual],prem.imgAlto[prem.frameActual],prem.X,prem.Y,prem.imgAncho[prem.frameActual],prem.imgAlto[prem.frameActual])
-            prem.frameActual = prem.frameActual+1;
-            if(prem.frameActual>=prem.frames) prem.frameActual=0
-        }
-
         for (const plat of plataformas){
             c.drawImage(plat.img,plat.imgX[plat.frameActual],plat.imgY[plat.frameActual],plat.imgAncho[plat.frameActual],plat.imgAlto[plat.frameActual],plat.X,plat.Y,plat.imgAncho[plat.frameActual],plat.imgAlto[plat.frameActual])
             plat.frameActual = plat.frameActual+1;
             if(plat.frameActual>=plat.frames) plat.frameActual=0
+        }
+
+        for (const prem of premios){
+            c.drawImage(prem.img,prem.imgX[prem.frameActual],prem.imgY[prem.frameActual],prem.imgAncho[prem.frameActual],prem.imgAlto[prem.frameActual],prem.X,prem.Y,prem.imgAncho[prem.frameActual],prem.imgAlto[prem.frameActual])
+            prem.frameActual = prem.frameActual+1;
+            if(prem.frameActual>=prem.frames) prem.frameActual=0
         }
 
         for (const disp of disparos){
@@ -190,14 +197,52 @@ function render(){
         personaje.frameActual ++;
         if(personaje.frameActual>=personaje.frames) personaje.frameActual=0
 
+        c.save()
+        c.globalAlpha = 0.5;
+        if (personaje.agachado == true || keyboard[40] == true){
+            if (personaje.moviendo==0){
+                c.drawImage(palancaAba,controlX,controlY)
+            } else {
+                if(personaje.direccion<1){
+                    c.drawImage(palancaAbaIzq,controlX,controlY)
+                } else {
+                    c.drawImage(palancaAbaDer,controlX,controlY)
+                }
+            }
+        } else if (mouseSaltar == true || keyboard[38] == true){
+            if (personaje.moviendo==0){
+                c.drawImage(palancaArr,controlX,controlY)
+            } else {
+                if(personaje.direccion<1){
+                    c.drawImage(palancaArrIzq,controlX,controlY)
+                } else {
+                    c.drawImage(palancaArrDer,controlX,controlY)
+                }    
+            }
+        } else {
+            if (personaje.moviendo==0){
+                c.drawImage(palanca,controlX,controlY)
+            }else{
+                if(personaje.direccion<1){
+                    c.drawImage(palancaIzq,controlX,controlY)
+                } else {
+                    c.drawImage(palancaDer,controlX,controlY)
+                }
+            }    
+        }
 
-        c.fillStyle = "white";
-        c.fillRect(controlX, controlY, controlAncho, controlAlto);
 
-        c.fillStyle = "white";
-        c.fillRect(botonX, controlY, controlAncho, controlAlto);
+
+        if (keyboard[65] == true || mouseDisparar == true){
+            c.drawImage(botonAPush,botonX,botonY)
+        } else{
+            c.drawImage(botonA,botonX,botonY)
+        }
+        c.restore()
     }
 }
+
+
 
 function perder(){
     if (personaje.poder >0){
@@ -290,7 +335,7 @@ function moverPersonaje(){
         personaje.moviendo=1;
         personaje.avanzar();
     }
-    if (keyboard[16] == true && personaje.poder ==2 && personaje.timerDisparo == 0){
+    if ((keyboard[16] == true || mouseDisparar == true) && personaje.poder ==2 && personaje.timerDisparo == 0){
         personaje.timerDisparo = 50;
         disparos.push(new Disparo(personaje.X,personaje.Y + personaje.alto/2,22,personaje,personaje.direccion)); //fuego
     }
@@ -469,8 +514,8 @@ function chocarPremios(){
     for (const b of premios){
         if ((a.Y + a.ancho  < b.Y + b.alto && a.Y + a.alto  > b.Y)  || (a.Y < b.Y + b.alto && a.Y  > b.Y )  || (a.Y + (a.alto/2) < b.Y + b.alto && a.Y + (a.alto/2)  > b.Y )) {
             if ((a.X + a.ancho  < b.X + b.ancho && a.X + a.ancho  > b.X)  || (a.X < b.X + b.ancho && a.X  > b.X ) || (a.X+(a.ancho/2) < b.X + b.ancho && a.X+(a.ancho/2)  > b.X )) {
-                b.aplicar();
                 b.eliminar();
+                b.aplicar();
             }
         }
     }
@@ -492,16 +537,17 @@ addEvent(canvas,"pointerdown", function(e){
         etapaJuego = 1
     }
     //alert(e.x + " - " + controlAncho + " " + controlX + " " + controlY + " " + controlAlto)
-    if (e.x < controlAncho + controlX && e.x > controlX && e.y > controlY && e.y < controlAlto+controlY){
-    mouseX=e.x
-    mouseID=e.pointerId
-    console.log("pointerdown"+e.pointerId)
-}
-if (e.x < controlAncho + botonX && e.x > botonX && e.y > controlY && e.y < controlAlto+controlY){
-
-mouseSaltar=true;
-mouseSaltarID=e.pointerId 
-}
+    if (e.x < controlAncho + controlX + offsetCanvasX && e.x > controlX + offsetCanvasX && e.y  > controlY + offsetCanvasY && e.y < controlAlto+controlY+ offsetCanvasY){
+        mouseX=e.x
+        mouseY=e.y
+        mouseID=e.pointerId
+        console.log("pointerdown"+e.pointerId)
+    }
+//alert(offsetCanvasX + " " + offsetCanvasY)
+    if (e.x < controlAncho + botonX + offsetCanvasX && e.x > botonX + offsetCanvasX && e.y > controlY + offsetCanvasY && e.y < controlAlto+controlY+ offsetCanvasY){
+        mouseDisparar = true
+        mouseDispararID=e.pointerId 
+    }
 })
 
 addEvent(canvas,"pointerup", function(e){
@@ -519,26 +565,38 @@ addEvent(canvas,"pointercancel", function(e){
         console.log("Cancelo mouse:" + mouseID + " - " + e.pointerId)
         mouse = 0;
         mouseX=0;
+        mouseY=0;
         mouseID=0;
-        
-    } else if (mouseSaltarID==e.pointerId){
         mouseSaltar=0
-        mouseSaltarID=0
-        console.log("Cancelo saltar")
+        
+    } else if (mouseDispararID==e.pointerId){
+        mouseDisparar=false
+        mouseDispararID=0
+        console.log("Cancelo disparar")
     }
    }
 
 addEvent(canvas,"pointermove", function(e){
     if (mouseX != 0){
-        if (e.x>mouseX){
+        if (e.x>mouseX+30){
             mouse=1;
-        }else{
+        }else if (e.x<mouseX-30){
             mouse=-1
+        }else{
+            mouse=0
+        }
     }
-}
-    console.log("pointermove"+e.x)
-}
-    )
+    if (mouseY != 0){
+        if (e.y>mouseY+30){
+            //agachar();
+        }else if (e.y<mouseY-30){
+            mouseSaltar=true;
+        }else{
+            mouseSaltar=false;
+        }
+    }
+    
+})
 
 
 
