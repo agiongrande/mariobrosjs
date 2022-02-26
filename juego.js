@@ -44,7 +44,7 @@ let intervaloMover=45
 
 function empezarJuego(){
     vidas = 3;
-    numeroNivel = 4;
+    numeroNivel = 1;
     empezarNivel()
     }
 
