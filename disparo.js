@@ -1,4 +1,9 @@
-class Disparo {
+import {indexacion} from '/graficos.js'
+import {colisionFutura, chocarPersonaje, chocarEnemigo, disparos, personaje, canvas} from '/juego.js'
+
+let numDisparo = 0;
+
+export class Disparo {
     constructor(x,y,grafico,quienDisparo,direccion){
         numDisparo++;
         this.id=numDisparo;

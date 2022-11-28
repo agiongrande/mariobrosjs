@@ -1,11 +1,10 @@
 import {indexacion} from '/graficos.js'
-import {PlayFx, colisionFutura, disparos, chocarEnemigo, colisionPiso, personaje, gravedad, canvas, enemigos} from '/juego.js'
-import {Disparo} from '/disparo.js'
+import {colisionFutura, chocarEnemigo, colisionPiso, personaje, gravedad, canvas, enemigos} from '/juego.js'
 
 let numEnemigo = 0;
 
 export class Enemigo {
-    constructor(x,y,grafico,direccion,velX,timerDisparo,antiGravedad, spawnTime){
+    constructor(x,y,grafico,direccion,velX,timerDisparo,antiGravedad){
         numEnemigo++;
         this.id=numEnemigo;
         this.direccion = direccion;

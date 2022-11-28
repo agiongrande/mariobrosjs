@@ -1,18 +1,41 @@
-<script src="precarga.js"></script>
+<script src="precarga.js" type="module"></script>
 <link href="estilo.css" rel="stylesheet" type="text/css">
-<canvas>
 
+
+<canvas>
+  
 </canvas>
+<div class="wrap" id="wrap">
+  <div>
+    <img src="graficos/titleRanking.png">
+  </div>
+  <div>
+    <img src="graficos/nameRanking.png">
+  </div>
+  <div>
+    <input type="text" id="textRanking" maxlength="10">
+  </div>
+  <div>
+    <rankingButton><img  class="boton" src='graficos/botonEnviar.png'></rankingButton>
+  </div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<script src="firebase.js" type="module"></script>
 
-<script src="graficos.js"></script>
-<script src="niveles.js"></script>
-<script src="personaje.js"></script>
-<script src="enemigo.js"></script>
-<script src="plataforma.js"></script>
-<script src="disparo.js"></script>
-<script src="premio.js"></script>
-<script src="juego.js"></script>
+<script>
+  //readRanking();
+</script>
+
+<script src="graficos.js" type="module"></script>
+<script src="niveles.js" type="module"></script>
+<script src="personaje.js"  type="module"></script>
+<script src="enemigo.js" type="module"></script>
+<script src="plataforma.js" type="module"></script>
+<script src="disparo.js" type="module"></script>
+<script src="premio.js" type="module"></script>
+<script src="juego.js" type="module"></script>
+
 

@@ -1,4 +1,11 @@
-class Personaje {
+import {PlayFx, PlayMusic, plataformas, premios, enemigos, disparos, perder, pasarNivel} from './juego.js'
+import {indexacion} from '/graficos.js'
+import {colisionFutura, chocarEnemigo, colisionTecho, colisionPiso, personaje, gravedad, canvas} from '/juego.js'
+
+export let dinamicosX =0;
+export let offsetX =0;
+export let cantMonedas =0;
+export class Personaje {
     constructor(x,y,grafico){
         this.moviendo = false;
         this.agachado= false;
@@ -11,10 +18,12 @@ class Personaje {
         this.salto = 40;
         this.X=x
         this.Y=y
+        offsetX=0;
         this.direccion = 1;
         indexacion(this,grafico);
         this.velocidadX=10
         this.velocidadY=0
+        dinamicosX=0
         this.gravedad = function(){
             this.velocidadY += gravedad
             if (this.velocidadY > 20) this.velocidadY=20
@@ -23,15 +32,15 @@ class Personaje {
                 if (colisionPiso(this)){
                     if (this.saltando>0){
                     this.saltando = 0;
-                    if (personaje.agachado==0){
-                        if (personaje.poder ==0){
-                            indexacion(personaje,17);
-                        }else if (personaje.poder ==1){
-                            indexacion(personaje,2);
-                        }else if (personaje.poder ==2){
-                            indexacion(personaje,19);
+                        if (personaje.agachado==0){
+                            if (personaje.poder ==0){
+                                indexacion(personaje,17);
+                            }else if (personaje.poder ==1){
+                                indexacion(personaje,2);
+                            }else if (personaje.poder ==2){
+                                indexacion(personaje,19);
+                            }
                         }
-                }
                     }
                     this.velocidadY = 0;
                 }
@@ -106,6 +115,7 @@ class Personaje {
 
         this.saltar = function(){
             this.velocidadY += -this.salto;
+            PlayFx("jump.mp3");
         }
         this.agachar = function(){
             if (personaje.poder == 1){
@@ -133,23 +143,31 @@ class Personaje {
                 if (this.poder ==0){
                     indexacion(this,2)
                     this.poder=1;
+                    PlayFx("mushroom.mp3");
                 }
             } else if (cualPoder == 13){
                 this.timerInmortal = 150; //estrella duracion
+                PlayMusic("star.mp3");
             } else if (cualPoder == 14){
                 this.poder=2;
+                PlayFx("mushroom.mp3");
                 indexacion(this,19)
             } else if (cualPoder == 15) {
                 cantMonedas++
+                PlayFx("coin.mp3");
             } else if (cualPoder == 16) {
                 cantMonedas++
-        } else if (cualPoder == 60) {
-            numeroNivel++
-                empezarNivel()
+                PlayFx("coin.mp3");
+            } else if (cualPoder == 60) {
+                pasarNivel();
             }
     
                 
             
             }
     }
+}
+
+export function resetCoins(coins){
+    cantMonedas = coins;
 }

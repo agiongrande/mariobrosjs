@@ -1,7 +1,16 @@
-function cargarNivel(nivel){
+import {plataformas,personaje, tileX, tileY, premios, enemigos} from './juego.js'
+import {Plataforma} from './plataforma.js'
+import {Personaje} from './personaje.js'
+import {Premio} from './premio.js'
+import {Enemigo} from './enemigo.js'
+
+export let enemigosDinamicos = []
+
+
+export function cargarNivel(nivel){
     switch (nivel) {
         case 1:
-            personaje = new Personaje(60,0,17);
+            
             plataformas.push(new Plataforma(tileX*0,tileY*0,59));
             plataformas.push(new Plataforma(tileX*115,tileY*0,59));
             
@@ -27,7 +36,6 @@ function cargarNivel(nivel){
             plataformas.push(new Plataforma(22*tileX,tileY*18,31));
 
             plataformas.push(new Plataforma(21*tileX,tileY*11,5,1,6,15,0,0));
-
             
             plataformas.push(new Plataforma(25*tileX,tileY*15,26));
             plataformas.push(new Plataforma(25*tileX,tileY*16,29));
@@ -200,12 +208,11 @@ function cargarNivel(nivel){
             plataformas.push(new Plataforma(109*tileX,tileY*9,39,1));
             premios.push(new Premio(tileX*109,tileY*8,60));
 
-            enemigosDinamicos = [
-                { "id": 0, "grafico": 0, "tiempo": 110, "X": 85, "Y": 14, "direccion": -1, "velocidad": 5, "timerDisparo":0}, 
-                { "id": 1, "grafico": 1, "tiempo": 90, "X": 92, "Y": 14, "direccion": 1, "velocidad": 5, "timerDisparo":0 },
-                { "id": 2, "grafico": 0, "tiempo": 110, "X": 60, "Y": 3, "direccion": -1, "velocidad": 5, "timerDisparo":0}, 
+            enemigosDinamicos = []
 
-            ]
+            enemigosDinamicos.push({"id": 0, "grafico": 0, "tiempo": 110, "X": 85, "Y": 14, "direccion": -1, "velocidad": 5, "timerDisparo":0})
+            enemigosDinamicos.push({"id": 1, "grafico": 1, "tiempo": 90, "X": 92, "Y": 14, "direccion": 1, "velocidad": 5, "timerDisparo":0 })
+            enemigosDinamicos.push({"id": 2, "grafico": 0, "tiempo": 110, "X": 60, "Y": 3, "direccion": -1, "velocidad": 5, "timerDisparo":0})
 
             break;
     
@@ -227,6 +234,39 @@ function cargarNivel(nivel){
             plataformas.push(new Plataforma(24*tileX,tileY*11,48,0,0,0,2,8));
             plataformas.push(new Plataforma(25*tileX,tileY*11,49,0,0,0,2,8));
             plataformas.push(new Plataforma(26*tileX,tileY*11,50,0,0,0,2,8));
+
+            premios.push(new Premio(tileX*30,tileY*4,16));
+            premios.push(new Premio(tileX*30,tileY*5,16));
+            premios.push(new Premio(tileX*30,tileY*6,16));
+
+            premios.push(new Premio(tileX*22,tileY*5,16));
+            premios.push(new Premio(tileX*21,tileY*5,16));
+            premios.push(new Premio(tileX*20,tileY*5,16));
+
+            premios.push(new Premio(tileX*62,tileY*16,16));
+
+            premios.push(new Premio(tileX*59,tileY*7,16));
+            premios.push(new Premio(tileX*60,tileY*7,16));
+
+            premios.push(new Premio(tileX*70,tileY*2,16));
+            premios.push(new Premio(tileX*71,tileY*2,16));
+
+            premios.push(new Premio(tileX*79,tileY*8,16));
+            premios.push(new Premio(tileX*80,tileY*8,16));
+
+            premios.push(new Premio(tileX*110,tileY*8,16));
+            premios.push(new Premio(tileX*111,tileY*8,16));
+            premios.push(new Premio(tileX*112,tileY*8,16));
+            premios.push(new Premio(tileX*113,tileY*8,16));
+
+            premios.push(new Premio(tileX*120,tileY*6,16));
+            premios.push(new Premio(tileX*120,tileY*6,16));
+
+            premios.push(new Premio(tileX*146,tileY*4,16));
+            premios.push(new Premio(tileX*150,tileY*6,16));
+            premios.push(new Premio(tileX*154,tileY*8,16));
+
+            premios.push(new Premio(tileX*166,tileY*15,16));
 
             plataformas.push(new Plataforma(29*tileX,tileY*9,48,0,0,0,1,20));
             plataformas.push(new Plataforma(30*tileX,tileY*9,49,0,0,0,1,20));
@@ -340,13 +380,16 @@ function cargarNivel(nivel){
             premios.push(new Premio(tileX*169,tileY*5,60));
 
             plataformas.push(new Plataforma(60*tileX,tileY*1,5,1,6,12,0,0));
-            enemigosDinamicos = [
-                { "id": 0, "grafico": 61, "tiempo": 400, "X": 80, "Y": 4, "direccion": -1, "velocidad": 5, "timerDisparo":0,"antiGravedad":1}, 
-                { "id": 1, "grafico": 61, "tiempo": 700, "X": 100, "Y": 4, "direccion": -1, "velocidad": 5, "timerDisparo":0,"antiGravedad":1 },
-              //  { "id": 2, "grafico": 61, "tiempo": 500, "X": 180, "Y": 9, "direccion": -1, "velocidad": 5, "timerDisparo":0,"antiGravedad":1 }
-            ]
+
+            enemigosDinamicos = []
+            enemigosDinamicos.push({ "id": 0, "grafico": 61, "tiempo": 400, "X": 80, "Y": 4, "direccion": -1, "velocidad": 5, "timerDisparo":0,"antiGravedad":1}) 
+            enemigosDinamicos.push({ "id": 1, "grafico": 61, "tiempo": 700, "X": 100, "Y": 4, "direccion": -1, "velocidad": 5, "timerDisparo":0,"antiGravedad":1 })
+    
             enemigos.push(new Enemigo(tileX*40,tileY*7,61,-1,5,0,1));
             enemigos.push(new Enemigo(tileX*50,tileY*12,61,-1,5,0,1));
+
+            
+
             break;
 
             case 3:
@@ -479,6 +522,18 @@ function cargarNivel(nivel){
 
                 enemigos.push(new Enemigo(tileX*69,tileY*2,23,-1,0,3,0));
 
+                premios.push(new Premio(tileX*69,tileY,16));
+
+                premios.push(new Premio(tileX*55,tileY*14,16));
+
+                premios.push(new Premio(tileX*87,tileY*15,16));
+                premios.push(new Premio(tileX*97,tileY*16,16));
+                premios.push(new Premio(tileX*98,tileY*16,16));
+                premios.push(new Premio(tileX*99,tileY*16,16));
+
+                premios.push(new Premio(tileX*94,tileY*10,16));
+                premios.push(new Premio(tileX*93,tileY*10,16));
+
                 plataformas.push(new Plataforma(68*tileX,tileY*10,42,0,0,0,2,7));
                 plataformas.push(new Plataforma(69*tileX,tileY*10,43,0,0,0,2,7));
                 plataformas.push(new Plataforma(70*tileX,tileY*10,44,0,0,0,2,7));
@@ -550,15 +605,18 @@ function cargarNivel(nivel){
 
                 plataformas.push(new Plataforma(108*tileX,tileY*7,5,1,6,60,0,0));
 
-                enemigosDinamicos = [
-                    { "id": 0, "grafico": 25, "tiempo": 400, "X": 89, "Y": 13, "direccion": -1, "velocidad": 10, "timerDisparo":0,"antiGravedad":0}, 
+                enemigosDinamicos = []
+                enemigosDinamicos.push({ "id": 0, "grafico": 25, "tiempo": 400, "X": 89, "Y": 13, "direccion": -1, "velocidad": 10, "timerDisparo":0,"antiGravedad":0})
+                
+   //             enemigosDinamicos = [
+ //                   { "id": 0, "grafico": 25, "tiempo": 400, "X": 89, "Y": 13, "direccion": -1, "velocidad": 10, "timerDisparo":0,"antiGravedad":0}, 
                 //   { "id": 1, "grafico": 25, "tiempo": 450, "X": 97, "Y": 11, "direccion": -1, "velocidad": 10, "timerDisparo":0,"antiGravedad":0 },
                 //  { "id": 2, "grafico": 61, "tiempo": 500, "X": 180, "Y": 9, "direccion": -1, "velocidad": 5, "timerDisparo":0,"antiGravedad":1 }
-                ]
+     //           ]
                 break;
 
                 case 4:
-                    personaje = new Personaje(60,0,17);
+                 //   personaje = new Personaje(60,0,17);
                     personaje.graficoInicioNivel();
 
                 personaje.X = 60
@@ -578,10 +636,34 @@ function cargarNivel(nivel){
                     plataformas.push(new Plataforma(index*tileX,tileY*6,41,1));
                 }
 
+                premios.push(new Premio(tileX*11,tileY*2,16));
+                premios.push(new Premio(tileX*12,tileY*2,16));
+                premios.push(new Premio(tileX*13,tileY*2,16));
+                premios.push(new Premio(tileX*14,tileY*2,16));
+
+
+                premios.push(new Premio(tileX*32,tileY*2,16));
+                premios.push(new Premio(tileX*33,tileY*2,16));
+                premios.push(new Premio(tileX*34,tileY*2,16));
+
+                premios.push(new Premio(tileX*33,tileY*13,16));
+
+                premios.push(new Premio(tileX*45,tileY*10,16));
+                premios.push(new Premio(tileX*45,tileY*14,16));
+
+                premios.push(new Premio(tileX*68,tileY*16,16));
+                premios.push(new Premio(tileX*67,tileY*16,16));
+                premios.push(new Premio(tileX*68,tileY*5,16));
+                premios.push(new Premio(tileX*67,tileY*5,16));
+                premios.push(new Premio(tileX*67,tileY*8,16));
+
+                premios.push(new Premio(tileX*85,tileY*16,16));
+                premios.push(new Premio(tileX*85,tileY*5,16));
+
+                premios.push(new Premio(tileX*94,tileY*2,16));
 
                 plataformas.push(new Plataforma(12*tileX,tileY*10,5,1,6,13,0,0));
 
-                
                 plataformas.push(new Plataforma(21*tileX,tileY*17,41,1));
                 plataformas.push(new Plataforma(21*tileX,tileY*17,41,1));
 
@@ -607,7 +689,7 @@ function cargarNivel(nivel){
                     plataformas.push(new Plataforma(index*tileX,tileY*11,41,1));
                 }
 
-                plataformas.push(new Plataforma(34*tileX,tileY*11,5,1,6,12,0,0));
+                plataformas.push(new Plataforma(34*tileX,tileY*11,5,1,6,14,0,0));
 
                 plataformas.push(new Plataforma(35*tileX,tileY*11,41,1));
 
@@ -631,7 +713,7 @@ function cargarNivel(nivel){
                     plataformas.push(new Plataforma(index*tileX,tileY*15,41,1));
                 }
 
-                for (let index = 58; index <= 65; index++) {
+                for (let index = 58; index <= 68; index++) {
                     plataformas.push(new Plataforma(index*tileX,tileY*6,41,1));
                 }
 
@@ -659,14 +741,63 @@ function cargarNivel(nivel){
                 plataformas.push(new Plataforma(63*tileX,tileY*1,53));
                 plataformas.push(new Plataforma(63*tileX,tileY*2,54));
 
-                enemigosDinamicos = [
-                    { "id": 0, "grafico": 0, "tiempo": 70, "X": 50, "Y": 3, "direccion": -1, "velocidad": 5, "timerDisparo":0}, 
-                    { "id": 1, "grafico": 0, "tiempo": 90, "X": 37, "Y": 3, "direccion": -1, "velocidad": 5, "timerDisparo":0}, 
-                    { "id": 2, "grafico": 0, "tiempo": 80, "X": 63, "Y": 3, "direccion": -1, "velocidad": 5, "timerDisparo":0}, 
-                
-                ]
-    
+                for (let index = 55; index <= 63; index++) {
+                    plataformas.push(new Plataforma(index*tileX,tileY*14,41,1));
+                }
 
+                plataformas.push(new Plataforma(67*tileX,tileY*9,40));
+                plataformas.push(new Plataforma(67*tileX,tileY*10,40));
+                plataformas.push(new Plataforma(67*tileX,tileY*11,40));
+                plataformas.push(new Plataforma(67*tileX,tileY*12,40));
+    
+                plataformas.push(new Plataforma(65*tileX,tileY*10,55));
+                plataformas.push(new Plataforma(66*tileX,tileY*10,56));
+
+                for (let index = 65; index <= 70; index++) {
+                    plataformas.push(new Plataforma(index*tileX,tileY*17,41,1));
+                }
+
+                plataformas.push(new Plataforma(74*tileX,tileY*5,48,0,0,0,2,10));
+                plataformas.push(new Plataforma(75*tileX,tileY*5,49,0,0,0,2,10));
+                plataformas.push(new Plataforma(76*tileX,tileY*5,50,0,0,0,2,10));
+
+
+                for (let index = 80; index <= 85; index++) {
+                    plataformas.push(new Plataforma(index*tileX,tileY*6,41,1));
+                }
+
+                enemigos.push(new Enemigo(tileX*84,tileY*5,23,-1,0,3,0));
+
+                for (let index = 80; index <= 85; index++) {
+                    plataformas.push(new Plataforma(index*tileX,tileY*17,41,1));
+                }
+
+                enemigos.push(new Enemigo(tileX*84,tileY*16,23,-1,0,3,0));
+
+                plataformas.push(new Plataforma(89*tileX,tileY*10,48,0,0,0,2,10));
+                plataformas.push(new Plataforma(90*tileX,tileY*10,49,0,0,0,2,10));
+                plataformas.push(new Plataforma(91*tileX,tileY*10,50,0,0,0,2,10));
+
+                plataformas.push(new Plataforma(95*tileX,tileY*8,48,0,0,0,2,10));
+                plataformas.push(new Plataforma(96*tileX,tileY*8,49,0,0,0,2,10));
+                plataformas.push(new Plataforma(97*tileX,tileY*8,50,0,0,0,2,10));
+
+                plataformas.push(new Plataforma(101*tileX,tileY*12,48,0,0,0,2,10));
+                plataformas.push(new Plataforma(102*tileX,tileY*12,49,0,0,0,2,10));
+                plataformas.push(new Plataforma(103*tileX,tileY*12,50,0,0,0,2,10));
+                
+
+                plataformas.push(new Plataforma(94*tileX,tileY*5,41,1));
+
+                plataformas.push(new Plataforma(106*tileX,tileY*10,41,1));
+                premios.push(new Premio(tileX*106,tileY*9,60));
+
+                enemigosDinamicos = []
+                enemigosDinamicos.push({ "id": 0, "grafico": 0, "tiempo": 70, "X": 50, "Y": 3, "direccion": -1, "velocidad": 5, "timerDisparo":0}) 
+                enemigosDinamicos.push({ "id": 1, "grafico": 0, "tiempo": 90, "X": 37, "Y": 3, "direccion": -1, "velocidad": 5, "timerDisparo":0}) 
+                enemigosDinamicos.push({ "id": 2, "grafico": 0, "tiempo": 80, "X": 63, "Y": 3, "direccion": -1, "velocidad": 5, "timerDisparo":0}) 
+                enemigosDinamicos.push({ "id": 3, "grafico": 0, "tiempo": 80, "X": 63, "Y": 10, "direccion": -1, "velocidad": 5, "timerDisparo":0}) 
+                
                 break;
                 }
 

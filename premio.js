@@ -1,4 +1,8 @@
-class Premio {
+import {indexacion} from '/graficos.js'
+import {colisionFutura, colisionPiso, personaje, canvas, colisionTecho, gravedad, premios} from '/juego.js'
+
+let numPremio = 0;
+export class Premio {
     constructor(x,y,grafico){
         numPremio++;
         this.X = x;

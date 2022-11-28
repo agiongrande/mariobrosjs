@@ -1,4 +1,9 @@
-class Plataforma {
+import {indexacion} from '/graficos.js'
+import {PlayFx,premios, plataformas} from '/juego.js'
+import {Premio} from '/premio.js'
+
+let numPlataforma = 0;
+export class Plataforma {
     constructor(x,y,grafico,romper,reemplazar,premio,movimiento,distancia){
         numPlataforma++;
         this.romper=romper;
@@ -34,6 +39,9 @@ class Plataforma {
             plataformas.splice(index, 1);
             if (this.reemplazar >0){
                 plataformas.push(new Plataforma(this.X,this.Y,reemplazar,0));
+                PlayFx("bump.mp3");
+            } else{
+                PlayFx("break_brick_block.mp3");
             }
         }
 
