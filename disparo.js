@@ -1,5 +1,5 @@
-import {indexacion} from '/graficos.js'
-import {colisionFutura, chocarPersonaje, chocarEnemigo, disparos, personaje, canvas} from '/juego.js'
+import {indexacion} from 'https://agiongrande.github.io/mariobrosjs/graficos.js'
+import {colisionFutura, chocarPersonaje, chocarEnemigo, disparos, personaje, canvas} from 'https://agiongrande.github.io/mariobrosjs/juego.js'
 
 let numDisparo = 0;
 

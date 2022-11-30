@@ -1,8 +1,8 @@
-import {plataformas,personaje, tileX, tileY, premios, enemigos} from './juego.js'
-import {Plataforma} from './plataforma.js'
-import {Personaje} from './personaje.js'
-import {Premio} from './premio.js'
-import {Enemigo} from './enemigo.js'
+import {plataformas,personaje, tileX, tileY, premios, enemigos} from 'https://agiongrande.github.io/mariobrosjs/juego.js'
+import {Plataforma} from 'https://agiongrande.github.io/mariobrosjs/plataforma.js'
+import {Personaje} from 'https://agiongrande.github.io/mariobrosjs/personaje.js'
+import {Premio} from 'https://agiongrande.github.io/mariobrosjs/premio.js'
+import {Enemigo} from 'https://agiongrande.github.io/mariobrosjs/enemigo.js'
 
 export let enemigosDinamicos = []
 

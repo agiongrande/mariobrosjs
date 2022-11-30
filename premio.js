@@ -1,5 +1,5 @@
-import {indexacion} from '/graficos.js'
-import {colisionFutura, colisionPiso, personaje, canvas, colisionTecho, gravedad, premios} from '/juego.js'
+import {indexacion} from './graficos.js'
+import {colisionFutura, colisionPiso, personaje, canvas, colisionTecho, gravedad, premios} from './juego.js'
 
 let numPremio = 0;
 export class Premio {

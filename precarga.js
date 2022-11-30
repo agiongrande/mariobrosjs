@@ -1,4 +1,4 @@
-import { readRanking } from "./firebase.js";
+import { readRanking } from "https://agiongrande.github.io/mariobrosjs/firebase.js";
 
 export let resultado = "";
 

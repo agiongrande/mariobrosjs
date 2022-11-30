@@ -1,6 +1,6 @@
-import {indexacion} from '/graficos.js'
-import {PlayFx,premios, plataformas} from '/juego.js'
-import {Premio} from '/premio.js'
+import {indexacion} from './graficos.js'
+import {PlayFx,premios, plataformas} from './juego.js'
+import {Premio} from './premio.js'
 
 let numPlataforma = 0;
 export class Plataforma {
