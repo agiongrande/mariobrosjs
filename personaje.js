@@ -1,6 +1,6 @@
-import {PlayFx, PlayMusic, plataformas, premios, enemigos, disparos, perder, pasarNivel} from './juego.js'
-import {indexacion} from '/graficos.js'
-import {colisionFutura, chocarEnemigo, colisionTecho, colisionPiso, personaje, gravedad, canvas} from '/juego.js'
+import {PlayFx, PlayMusic, plataformas, premios, enemigos, disparos, perder, pasarNivel} from 'mariobrosjs/juego.js'
+import {indexacion} from 'mariobrosjs/graficos.js'
+import {colisionFutura, chocarEnemigo, colisionTecho, colisionPiso, personaje, gravedad, canvas} from 'mariobrosjs/juego.js'
 
 export let dinamicosX =0;
 export let offsetX =0;

@@ -1,10 +1,10 @@
-import {readRanking, readLastUserPoints, readRankingLength, UpdateRanking, maxUsersInRanking} from './firebase.js'
-import {cargarNivel, enemigosDinamicos} from './niveles.js'
-import {Disparo} from './disparo.js'
-import {Enemigo} from './enemigo.js'
-import {Personaje, resetCoins, dinamicosX, offsetX, cantMonedas} from './personaje.js'
-import {indexacion, imgMusicOff, imgMusicOn, imgGanar, imgPresentacion, imgGameOver, imgFondo, imgVidas, imgMonedas, palanca, palancaAba, palancaAbaDer, palancaAbaIzq, palancaArr, palancaArrDer, palancaArrIzq, palancaDer, palancaIzq, botonA, botonAPush} from './graficos.js'
-import {preLoadGame} from './precarga.js'
+import {readRanking, readLastUserPoints, readRankingLength, UpdateRanking, maxUsersInRanking} from 'https://agiongrande.github.io/mariobrosjs/firebase.js'
+import {cargarNivel, enemigosDinamicos} from 'https://agiongrande.github.io/mariobrosjs/niveles.js'
+import {Disparo} from 'https://agiongrande.github.io/mariobrosjs/disparo.js'
+import {Enemigo} from 'https://agiongrande.github.io/mariobrosjs/enemigo.js'
+import {Personaje, resetCoins, dinamicosX, offsetX, cantMonedas} from 'https://agiongrande.github.io/mariobrosjs/personaje.js'
+import {indexacion, imgMusicOff, imgMusicOn, imgGanar, imgPresentacion, imgGameOver, imgFondo, imgVidas, imgMonedas, palanca, palancaAba, palancaAbaDer, palancaAbaIzq, palancaArr, palancaArrDer, palancaArrIzq, palancaDer, palancaIzq, botonA, botonAPush} from 'https://agiongrande.github.io/mariobrosjs/graficos.js'
+import {preLoadGame} from 'https://agiongrande.github.io/mariobrosjs/precarga.js'
 
 export let gravedad = 5;
 export let enemigos = [];
