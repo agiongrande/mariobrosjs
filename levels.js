@@ -34,7 +34,7 @@ export function LoadLevel(level){
             platforms.push(new Platform(22*tileX,tileY*17,31));
             platforms.push(new Platform(22*tileX,tileY*18,31));
 
-            platforms.push(new Platform(21*tileX,tileY*11,5,1,6,14,0,0));
+            platforms.push(new Platform(21*tileX,tileY*11,5,1,6,15,0,0));
             
             platforms.push(new Platform(25*tileX,tileY*15,26));
             platforms.push(new Platform(25*tileX,tileY*16,29));
