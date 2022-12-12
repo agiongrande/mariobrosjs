@@ -26,9 +26,9 @@ var preloadPictures = function(pictureUrls) {
   }
 };
 
-export function preLoadGame(){
+export function PreloadGame(){
     return new Promise(resolve => {
-        preloadPictures(['graficos/4307.png','graficos/botonA.png','graficos/botonAPush.png','graficos/palanca.png','graficos/palancaIzq.png','graficos/palancaAba.png','graficos/palancaArr.png','graficos/palancaArrDer.png','graficos/palancaArrIzq.png','graficos/palancaAbaDer.png','graficos/palancaAbaIzq.png','graficos/palancaDer.png','graficos/presentacion.png','graficos/gameover.png','graficos/imgganar.png','graficos/105636.png','graficos/mariob.png', 'graficos/4320.png', 'graficos/31609.png', 'graficos/65292.png'])
+        preloadPictures(['graphics/4307.png','graphics/botonA.png','graphics/botonAPush.png','graphics/palanca.png','graphics/palancaIzq.png','graphics/palancaAba.png','graphics/palancaArr.png','graphics/palancaArrDer.png','graphics/palancaArrIzq.png','graphics/palancaAbaDer.png','graphics/palancaAbaIzq.png','graphics/palancaDer.png','graphics/presentacion.png','graphics/gameover.png','graphics/imgganar.png','graphics/105636.png','graphics/mariob.png', 'graphics/4320.png', 'graphics/31609.png', 'graphics/65292.png'])
             resolve(resultado);
       });
 }

@@ -16,7 +16,7 @@ canvas {
     }
 }
 .wrap { 
-    background-image: url("./graficos/imgRanking.png");
+    background-image: url("./graphics/imgRanking.png");
     display:none;
     position: relative;
     margin: auto;
